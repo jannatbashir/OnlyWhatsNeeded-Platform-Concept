@@ -1,0 +1,1 @@
+# OnlyWhatsNeeded-Platform-Concept
