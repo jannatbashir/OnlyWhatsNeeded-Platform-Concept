@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OWN: Co-Creator Platform Concept</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --ink: #1C1C1C;
+    --green: #2A6B3C;
+    --green-light: #3A8A50;
+    --green-pale: #EAF2EC;
+    --muted: #6B6B6B;
+    --border: #E5E5E5;
+    --surface: #F7F7F7;
+    --white: #FFFFFF;
+    --ig: #E1306C;
+    --li: #0A66C2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 32px; border-bottom: 1px solid var(--border);
+    background: #fff; position: sticky; top: 0; z-index: 200;
+  }
+  .nav-logo img { height: 36px; display: block; }
+  .nav-links { display: flex; gap: 28px; font-size: 13px; font-weight: 600; color: var(--ink); }
+  .nav-links a { text-decoration: none; color: inherit; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--green); }
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+  .nav-concept-tag { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); background: var(--green-pale); border: 1px solid #c3dfc9; padding: 4px 10px; border-radius: 2px; }
+  .nav-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--green); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; cursor: pointer; }
+
+  /* HERO */
+  .hero { background: var(--ink); color: #fff; padding: 56px 32px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .hero-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #7EC894; margin-bottom: 14px; }
+  .hero-title { font-family: 'Nunito', sans-serif; font-size: 44px; font-weight: 900; line-height: 1.1; margin-bottom: 18px; }
+  .hero-title span { color: #7EC894; }
+  .hero-sub { font-size: 14px; color: #ABABAB; line-height: 1.75; max-width: 400px; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .hero-stat { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 18px 20px; }
+  .hero-stat-val { font-family: 'Nunito', sans-serif; font-size: 28px; font-weight: 900; color: #7EC894; display: block; line-height: 1; margin-bottom: 4px; }
+  .hero-stat-label { font-size: 11px; color: #ABABAB; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* TABS */
+  .tabs-bar { display: flex; border-bottom: 1.5px solid var(--border); background: #fff; padding: 0 32px; position: sticky; top: 65px; z-index: 100; overflow-x: auto; }
+  .tab-btn { padding: 16px 24px; font-size: 13px; font-weight: 700; color: var(--muted); cursor: pointer; border: none; border-bottom: 2.5px solid transparent; margin-bottom: -1.5px; white-space: nowrap; background: none; font-family: 'Nunito Sans', sans-serif; transition: all 0.2s; }
+  .tab-btn.active { color: var(--green); border-bottom-color: var(--green); }
+  .tab-btn:hover:not(.active) { color: var(--ink); }
+
+  /* SECTIONS */
+  .section { display: none; padding: 40px 32px; max-width: 1120px; margin: 0 auto; animation: fadeUp 0.25s ease; }
+  .section.active { display: block; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .section-head { margin-bottom: 32px; }
+  .section-head h2 { font-family: 'Nunito', sans-serif; font-size: 26px; font-weight: 900; color: var(--ink); margin-bottom: 6px; }
+  .section-head p { font-size: 13px; color: var(--muted); max-width: 560px; }
+
+  /* HOW IT WORKS BANNER */
+  .how-it-works {
+    display: flex; align-items: center; gap: 0;
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: 10px; margin-bottom: 32px; overflow: hidden;
+  }
+  .hiw-step {
+    flex: 1; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;
+    border-right: 1px solid var(--border); position: relative;
+  }
+  .hiw-step:last-child { border-right: none; }
+  .hiw-step-num { font-size: 10px; font-weight: 800; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+  .hiw-step-title { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 800; color: var(--ink); }
+  .hiw-step-sub { font-size: 11px; color: var(--muted); line-height: 1.4; }
+  .hiw-step-icons { display: flex; gap: 5px; margin-top: 4px; }
+  .hiw-icon { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; }
+  .hiw-icon.ig { background: #fce4ec; color: var(--ig); }
+  .hiw-icon.li { background: #e3f2fd; color: var(--li); }
+  .hiw-icon.own { background: var(--green-pale); color: var(--green); }
+  .hiw-arrow { font-size: 18px; color: var(--border); padding: 0 2px; align-self: center; }
+
+  /* VOTE CARDS */
+  .votes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; }
+
+  .vote-card { border: 1.5px solid var(--border); border-radius: 12px; padding: 24px; background: #fff; transition: box-shadow 0.2s, transform 0.2s; }
+  .vote-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
+
+  .vc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .vc-badge { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; display: inline-block; }
+  .badge-live { background: #E7F5EB; color: var(--green); }
+  .badge-shipped { background: #FFF3E0; color: #E65100; }
+
+  .vc-title { font-family: 'Nunito', sans-serif; font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
+  .vc-desc { font-size: 12.5px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+
+  /* SENTIMENT STRIP */
+  .sentiment-strip {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 14px; margin-bottom: 14px;
+    display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  }
+  .sentiment-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); white-space: nowrap; }
+  .sentiment-sources { display: flex; gap: 8px; flex: 1; }
+  .ss-item { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; }
+  .ss-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .ss-dot.ig { background: var(--ig); }
+  .ss-dot.li { background: var(--li); }
+  .ss-total { font-size: 11px; font-weight: 700; color: var(--muted); margin-left: auto; white-space: nowrap; }
+
+  .sentiment-note {
+    font-size: 10.5px; color: var(--muted); line-height: 1.5;
+    padding: 8px 10px; background: #fffbf0; border: 1px solid #f0e0b0;
+    border-radius: 6px; margin-bottom: 14px;
+  }
+  .sentiment-note strong { color: var(--ink); }
+
+  /* VOTE OPTIONS */
+  .vote-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+  .vo-row { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+  .vo-bar-wrap { flex: 1; height: 38px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 6px; position: relative; overflow: hidden; transition: border-color 0.2s; }
+  .vo-bar-wrap:hover { border-color: #aac; }
+  .vo-bar-wrap.selected { border-color: var(--green); }
+  .vo-fill { height: 100%; background: var(--green); opacity: 0.12; transition: width 0.5s ease; border-radius: 4px; }
+  .vo-fill.selected { opacity: 0.22; }
+  .vo-label { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 12.5px; font-weight: 600; color: var(--ink); z-index: 1; }
+  .vo-pct { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800; color: var(--green); min-width: 38px; text-align: right; }
+
+  /* OTP GATE */
+  .otp-gate { margin-bottom: 4px; }
+
+  .own-btn { width: 100%; padding: 13px; background: var(--ink); color: #fff; border: none; border-radius: 6px; font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800; cursor: pointer; transition: background 0.2s, transform 0.1s; letter-spacing: 0.3px; }
+  .own-btn:hover:not(.voted):not(.disabled):not(.green-btn) { background: #2d2d2d; }
+  .own-btn:active:not(.voted) { transform: scale(0.98); }
+  .own-btn.voted { background: var(--green); cursor: default; }
+  .own-btn.disabled { background: var(--surface); color: var(--muted); cursor: default; border: 1.5px solid var(--border); }
+  .own-btn.green-btn { background: var(--green); }
+  .own-btn.green-btn:hover { background: var(--green-light); }
+
+  .otp-input-row { display: none; gap: 8px; margin-bottom: 8px; }
+  .otp-input-row.visible { display: flex; }
+  .otp-phone-input { flex: 1; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 6px; font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 600; outline: none; transition: border-color 0.2s; }
+  .otp-phone-input:focus { border-color: var(--green); }
+  .otp-code-row { display: none; gap: 8px; margin-bottom: 8px; }
+  .otp-code-row.visible { display: flex; }
+  .otp-code-input { flex: 1; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 6px; font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 900; letter-spacing: 6px; text-align: center; outline: none; transition: border-color 0.2s; }
+  .otp-code-input:focus { border-color: var(--green); }
+  .otp-note { font-size: 11px; color: var(--muted); text-align: center; margin-bottom: 8px; display: none; }
+  .otp-note.visible { display: block; }
+  .otp-verified-msg { font-size: 11.5px; color: var(--green); font-weight: 700; text-align: center; margin-bottom: 8px; display: none; }
+  .otp-verified-msg.visible { display: block; }
+
+  .vote-official-label {
+    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--green); text-align: center; margin-bottom: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .vote-official-label::before, .vote-official-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .vc-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-weight: 600; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+
+  /* FINGERPRINT */
+  .fp-impact { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 36px; }
+  .fp-stat-card { border: 1.5px solid var(--border); border-radius: 10px; padding: 20px; background: #fff; }
+  .fp-stat-num { font-family: 'Nunito', sans-serif; font-size: 32px; font-weight: 900; color: var(--green); display: block; margin-bottom: 4px; }
+  .fp-stat-lbl { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 1.5px; background: var(--border); }
+  .tl-item { position: relative; margin-bottom: 20px; opacity: 0; animation: slideIn 0.35s ease forwards; }
+  .tl-item:nth-child(1) { animation-delay: 0.05s; }
+  .tl-item:nth-child(2) { animation-delay: 0.1s; }
+  .tl-item:nth-child(3) { animation-delay: 0.15s; }
+  .tl-item:nth-child(4) { animation-delay: 0.2s; }
+  .tl-item:nth-child(5) { animation-delay: 0.25s; }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
+  .tl-dot { position: absolute; left: -25px; top: 16px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--border); }
+  .tl-dot.active { background: var(--green); border-color: var(--green); box-shadow: 0 0 0 3px #c3dfc9; }
+  .tl-dot.done { background: #E65100; border-color: #E65100; }
+  .tl-card { border: 1.5px solid var(--border); border-radius: 10px; padding: 18px 20px; background: #fff; transition: box-shadow 0.2s; }
+  .tl-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .tl-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .tl-card-title { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 800; color: var(--ink); line-height: 1.3; }
+  .tl-card-date { font-size: 11px; color: var(--muted); font-weight: 600; white-space: nowrap; margin-left: 12px; }
+  .tl-card-body { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
+  .vote-pill { display: inline-block; margin-top: 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; background: var(--green-pale); color: var(--green); border: 1px solid #c3dfc9; }
+
+  /* JOURNEY */
+  .progress-steps { display: flex; margin-bottom: 36px; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--border); }
+  .ps-step { flex: 1; padding: 12px 6px; font-size: 10px; font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); background: var(--surface); border-right: 1px solid var(--border); }
+  .ps-step:last-child { border-right: none; }
+  .ps-step.done { background: var(--green-pale); color: var(--green); }
+  .ps-step.now { background: var(--green); color: #fff; }
+  .journey-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
+  .jc { border: 1.5px solid var(--border); border-radius: 10px; padding: 22px; background: #fff; }
+  .jc-num { font-family: 'Nunito', sans-serif; font-size: 36px; font-weight: 900; color: var(--border); line-height: 1; margin-bottom: 12px; }
+  .jc-title { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+  .jc-body { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
+
+  /* TESTS */
+  .batch-tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+  .batch-tab { padding: 8px 16px; font-size: 12px; font-weight: 700; border-radius: 20px; border: 1.5px solid var(--border); cursor: pointer; transition: all 0.15s; background: #fff; color: var(--muted); font-family: 'Nunito Sans', sans-serif; }
+  .batch-tab.active { background: var(--green); color: #fff; border-color: var(--green); }
+  .tests-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .test-card { border: 1.5px solid var(--border); border-radius: 10px; padding: 18px 20px; background: #fff; display: flex; flex-direction: column; gap: 10px; transition: box-shadow 0.2s; }
+  .test-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .tc-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .tc-name { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800; color: var(--ink); }
+  .tc-pass { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 3px 9px; border-radius: 20px; background: #E7F5EB; color: var(--green); }
+  .tc-result { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+  .tc-result strong { color: var(--ink); font-weight: 700; }
+  .tc-bar-wrap { height: 4px; background: var(--surface); border-radius: 99px; overflow: hidden; }
+  .tc-bar { height: 100%; background: var(--green); border-radius: 99px; }
+  .tc-lab { font-size: 10.5px; color: var(--muted); font-weight: 600; }
+  .tc-link { font-size: 11px; font-weight: 700; color: var(--green); cursor: pointer; text-decoration: none; }
+
+  /* INSIGHT BAR */
+  .insight-bar { background: var(--ink); color: #fff; border-radius: 10px; padding: 28px 32px; display: flex; gap: 32px; align-items: flex-start; margin-top: 4px; }
+  .insight-bar-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7EC894; white-space: nowrap; padding-top: 2px; }
+  .insight-bar-body { font-size: 13px; line-height: 1.75; color: #C0C0C0; }
+  .insight-bar-body strong { color: #fff; font-weight: 700; }
+
+  /* OTP MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: #fff; border-radius: 16px; padding: 32px; width: 100%; max-width: 400px; margin: 16px; }
+  .modal-title { font-family: 'Nunito', sans-serif; font-size: 20px; font-weight: 900; color: var(--ink); margin-bottom: 6px; }
+  .modal-sub { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 24px; }
+  .modal-step { display: none; }
+  .modal-step.visible { display: block; }
+  .modal-input { width: 100%; padding: 13px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'Nunito Sans', sans-serif; font-size: 14px; font-weight: 600; outline: none; margin-bottom: 12px; transition: border-color 0.2s; }
+  .modal-input:focus { border-color: var(--green); }
+  .modal-code-input { width: 100%; padding: 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 28px; font-weight: 900; letter-spacing: 10px; text-align: center; outline: none; margin-bottom: 8px; transition: border-color 0.2s; }
+  .modal-code-input:focus { border-color: var(--green); }
+  .modal-hint { font-size: 11px; color: var(--muted); text-align: center; margin-bottom: 16px; }
+  .modal-note { font-size: 11.5px; color: var(--muted); line-height: 1.6; background: var(--surface); border-radius: 8px; padding: 12px 14px; margin-bottom: 16px; }
+  .modal-note strong { color: var(--ink); }
+  .modal-success { text-align: center; padding: 16px 0; }
+  .modal-success-icon { font-size: 48px; margin-bottom: 12px; }
+  .modal-success-title { font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 900; color: var(--green); margin-bottom: 8px; }
+  .modal-success-sub { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .modal-close-btn { width: 100%; padding: 13px; background: var(--green); color: #fff; border: none; border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800; cursor: pointer; margin-top: 16px; }
+
+  /* LABEL TRANSLATOR */
+  .lt-hero {
+    background: var(--ink); color: #fff;
+    border-radius: 12px; padding: 28px 32px;
+    margin-bottom: 28px;
+    display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  }
+  .lt-hero-left h3 { font-family: 'Nunito', sans-serif; font-size: 22px; font-weight: 900; margin-bottom: 6px; }
+  .lt-hero-left p { font-size: 13px; color: #ABABAB; line-height: 1.65; max-width: 440px; }
+  .lt-hero-tag { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7EC894; margin-bottom: 8px; }
+
+  .lang-selector-wrap { display: flex; flex-direction: column; gap: 8px; min-width: 220px; }
+  .lang-selector-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #ABABAB; }
+  .lang-selector {
+    padding: 12px 16px; background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.2); border-radius: 8px;
+    color: #fff; font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 700;
+    cursor: pointer; outline: none; width: 100%;
+    appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23fff' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 14px center;
+    background-size: 12px;
+  }
+  .lang-selector option { background: #1C1C1C; color: #fff; }
+
+  .lt-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+  .lt-panel { border: 1.5px solid var(--border); border-radius: 12px; background: #fff; overflow: hidden; }
+  .lt-panel-header {
+    padding: 14px 20px; border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--surface);
+  }
+  .lt-panel-title { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800; color: var(--ink); }
+  .lt-panel-badge { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px; background: var(--green-pale); color: var(--green); }
+  .lt-panel-body { padding: 20px; }
+
+  .lt-product-selector { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .lt-prod-btn { padding: 7px 14px; font-size: 12px; font-weight: 700; border-radius: 20px; border: 1.5px solid var(--border); background: #fff; color: var(--muted); cursor: pointer; font-family: 'Nunito Sans', sans-serif; transition: all 0.15s; }
+  .lt-prod-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  .nutrition-label { border: 2px solid var(--ink); border-radius: 4px; padding: 16px; font-size: 13px; }
+  .nl-title { font-family: 'Nunito', sans-serif; font-size: 20px; font-weight: 900; border-bottom: 8px solid var(--ink); padding-bottom: 4px; margin-bottom: 8px; }
+  .nl-serving { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+  .nl-row { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 0; border-bottom: 1px solid var(--border); }
+  .nl-row:last-child { border-bottom: none; }
+  .nl-row-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .nl-row-val { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 800; color: var(--ink); }
+  .nl-row.header { border-bottom: 4px solid var(--ink); margin-bottom: 2px; }
+  .nl-row.header .nl-row-name { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .ingredient-decoder { display: flex; flex-direction: column; gap: 12px; }
+  .ing-item { border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden; cursor: pointer; transition: box-shadow 0.15s; }
+  .ing-item:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+  .ing-item-top { padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; }
+  .ing-name-en { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800; color: var(--ink); }
+  .ing-name-local { font-size: 16px; font-weight: 700; color: var(--green); margin-top: 2px; }
+  .ing-expand-icon { font-size: 18px; color: var(--muted); transition: transform 0.2s; }
+  .ing-item.open .ing-expand-icon { transform: rotate(45deg); }
+  .ing-detail { display: none; padding: 0 16px 14px; border-top: 1px solid var(--border); }
+  .ing-item.open .ing-detail { display: block; }
+  .ing-why { font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-top: 10px; }
+  .ing-why strong { color: var(--ink); font-weight: 700; }
+  .ing-badge-row { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .ing-badge { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px; }
+  .ing-badge.clean { background: #E7F5EB; color: var(--green); }
+  .ing-badge.source { background: #E3F2FD; color: #0A66C2; }
+  .ing-badge.function { background: #FFF3E0; color: #E65100; }
+
+  .lt-poll-strip {
+    margin-top: 20px; padding: 14px 16px;
+    background: #fffbf0; border: 1.5px solid #f0e0b0;
+    border-radius: 8px; display: flex; gap: 14px; align-items: center;
+  }
+  .lt-poll-icon { font-size: 22px; }
+  .lt-poll-text { flex: 1; }
+  .lt-poll-text strong { font-size: 13px; color: var(--ink); font-weight: 700; display: block; margin-bottom: 2px; }
+  .lt-poll-text span { font-size: 11.5px; color: var(--muted); }
+  .lt-poll-btn { padding: 8px 14px; background: var(--ink); color: #fff; border: none; border-radius: 6px; font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.7)} }
+  @media (max-width: 768px) {
+    nav { padding: 12px 16px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 36px 16px; gap: 28px; }
+    .hero-title { font-size: 30px; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .tabs-bar { padding: 0 16px; top: 62px; }
+    .section { padding: 28px 16px; }
+    .votes-grid { grid-template-columns: 1fr; }
+    .fp-impact { grid-template-columns: 1fr 1fr; }
+    .journey-grid { grid-template-columns: 1fr; }
+    .progress-steps { display: none; }
+    .insight-bar { flex-direction: column; gap: 12px; padding: 20px; }
+    .tests-grid { grid-template-columns: 1fr; }
+    .how-it-works { flex-direction: column; }
+    .hiw-step { border-right: none; border-bottom: 1px solid var(--border); }
+    .hiw-step:last-child { border-bottom: none; }
+    .lt-hero { flex-direction: column; }
+    .lt-layout { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- OTP MODAL -->
+<div class="modal-overlay" id="otp-modal">
+  <div class="modal">
+    <div class="modal-step visible" id="modal-step-1">
+      <div class="modal-title">Verify on WhatsApp</div>
+      <div class="modal-sub">One vote per person, verified via WhatsApp. Enter your number and we will open a pre-filled message. Hit Send and you are done.</div>
+      <input class="modal-input" type="tel" id="modal-phone" placeholder="+91 98765 43210" />
+      <div class="modal-note">
+        <strong>Why WhatsApp?</strong> You might vote on Instagram with one email and LinkedIn with another. Your WhatsApp number is the only identity that is truly one-per-person. Once verified, you become part of OWN direct community: first to know about new products, restocks, and taste test invites.
+      </div>
+      <button class="own-btn green-btn" onclick="openWhatsApp()">Verify on WhatsApp</button>
+    </div>
+    <div class="modal-step" id="modal-step-2">
+      <div class="modal-title">Waiting for verification</div>
+      <div class="modal-sub">WhatsApp should have opened with a pre-filled message. Just hit Send.</div>
+      <div style="text-align:center;padding:24px 0;">
+        <div style="font-size:40px;margin-bottom:12px;">💬</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7;">The moment you send the message, this page will update automatically. You do not need to come back and click anything.</div>
+        <div style="margin-top:20px;display:flex;align-items:center;justify-content:center;gap:8px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.2s infinite;"></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.2s infinite 0.4s;"></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.2s infinite 0.8s;"></div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;">Waiting for your message</div>
+      </div>
+      <button class="own-btn" style="background:var(--surface);color:var(--muted);border:1.5px solid var(--border);font-size:12px;margin-top:8px;" onclick="simulateVerified()">Simulate: Message Sent</button>
+    </div>
+    <div class="modal-step" id="modal-step-3">
+      <div class="modal-success">
+        <div class="modal-success-icon">✅</div>
+        <div class="modal-success-title">Vote certified.</div>
+        <div class="modal-success-sub">Your official vote is in and added to your Fingerprint. You are now a verified OWNer: first to hear about new launches, restocks, and taste test invites.</div>
+        <button class="modal-close-btn" onclick="closeModal()">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <img src="https://i.mscwlns.co/media/misc/other/header/Untitled_design__6_-removebg-preview_4bh6sp.png?tr=w-200,c-at_max" alt="Only What's Needed" />
+  </div>
+  <div class="nav-links">
+    <a href="#">All Products</a>
+    <a href="#">Refer Now</a>
+    <a href="#">Check Test Reports</a>
+  </div>
+  <div class="nav-right">
+    <span class="nav-concept-tag">Platform Concept</span>
+    <div class="nav-avatar">P</div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-label">Your Co-Creator Dashboard</div>
+    <h1 class="hero-title">Your fingerprint is on <span>every product</span> you helped build.</h1>
+    <p class="hero-sub">You don't just buy OWN products. You decide what gets made, what goes in, and what gets tested. This is your record of that.</p>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="hero-stat-val">14</span><span class="hero-stat-label">Votes Cast</span></div>
+    <div class="hero-stat"><span class="hero-stat-val">6</span><span class="hero-stat-label">Decisions Shaped</span></div>
+    <div class="hero-stat"><span class="hero-stat-val">3</span><span class="hero-stat-label">Products in Your DNA</span></div>
+    <div class="hero-stat"><span class="hero-stat-val">Aug '24</span><span class="hero-stat-label">OWNer Since</span></div>
+  </div>
+</div>
+
+<div class="tabs-bar">
+  <button class="tab-btn active" onclick="switchTab('votes',this)">Live Votes</button>
+  <button class="tab-btn" onclick="switchTab('fingerprint',this)">My Fingerprint</button>
+  <button class="tab-btn" onclick="switchTab('journey',this)">Product Journey</button>
+  <button class="tab-btn" onclick="switchTab('tests',this)">Test Reports</button>
+  <button class="tab-btn" onclick="switchTab('translator',this)">🌐 Label Translator</button>
+</div>
+
+<!-- ══ VOTES ══ -->
+<div class="section active" id="sec-votes">
+  <div class="section-head">
+    <h2>Cast Your Vote</h2>
+    <p>Votes are collected across Instagram and LinkedIn as community sentiment. Your official counted vote happens here, verified once per person via phone OTP.</p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how-it-works">
+    <div class="hiw-step">
+      <div class="hiw-step-num">Step 1</div>
+      <div class="hiw-step-title">Community signals</div>
+      <div class="hiw-step-sub">Votes collected where you already are</div>
+      <div class="hiw-step-icons">
+        <span class="hiw-icon ig">Instagram</span>
+        <span class="hiw-icon li">LinkedIn</span>
+      </div>
+    </div>
+    <div class="hiw-step">
+      <div class="hiw-step-num">Step 2</div>
+      <div class="hiw-step-title">Sentiment aggregated</div>
+      <div class="hiw-step-sub">Directional signal, not the final count</div>
+      <div class="hiw-step-icons"><span class="hiw-icon own">Live on this page</span></div>
+    </div>
+    <div class="hiw-step">
+      <div class="hiw-step-num">Step 3</div>
+      <div class="hiw-step-title">Official vote here</div>
+      <div class="hiw-step-sub">OTP verified: one person, one vote</div>
+      <div class="hiw-step-icons"><span class="hiw-icon own">Counts toward decision</span></div>
+    </div>
+    <div class="hiw-step">
+      <div class="hiw-step-num">Step 4</div>
+      <div class="hiw-step-title">Decision published</div>
+      <div class="hiw-step-sub">Outcome + your vote logged in Fingerprint</div>
+      <div class="hiw-step-icons"><span class="hiw-icon own">Permanent record</span></div>
+    </div>
+  </div>
+
+  <div class="votes-grid">
+
+    <!-- Vote 1 -->
+    <div class="vote-card">
+      <div class="vc-top">
+        <span class="vc-badge badge-live">● Live: 6 days left</span>
+      </div>
+      <div class="vc-title">What should our next flavour be?</div>
+      <div class="vc-desc">We've shortlisted 3 options from your comments. All have been taste-tested and cleared by our nutrition team.</div>
+
+      <div class="sentiment-strip">
+        <span class="sentiment-label">Community Sentiment</span>
+        <div class="sentiment-sources">
+          <div class="ss-item"><div class="ss-dot ig"></div><span style="color:var(--ig)">Instagram</span>&nbsp;8.2K</div>
+          <div class="ss-item"><div class="ss-dot li"></div><span style="color:var(--li)">LinkedIn</span>&nbsp;1.4K</div>
+        </div>
+        <span class="ss-total">9,647 signals</span>
+      </div>
+
+      <div class="sentiment-note">
+        ⚠️ <strong>Sentiment only.</strong> Social votes give directional signal but can't be deduplicated. Your <strong>official counted vote</strong> happens below, verified once per phone number.
+      </div>
+
+      <div class="vote-options">
+        <div class="vo-row" onclick="pickOption(this,'v1')"><div class="vo-bar-wrap"><div class="vo-fill" style="width:52%"></div><span class="vo-label">Mango Chilli</span></div><span class="vo-pct">52%</span></div>
+        <div class="vo-row" onclick="pickOption(this,'v1')"><div class="vo-bar-wrap"><div class="vo-fill" style="width:31%"></div><span class="vo-label">Cardamom Rose</span></div><span class="vo-pct">31%</span></div>
+        <div class="vo-row" onclick="pickOption(this,'v1')"><div class="vo-bar-wrap"><div class="vo-fill" style="width:17%"></div><span class="vo-label">Plain (Unflavoured)</span></div><span class="vo-pct">17%</span></div>
+      </div>
+
+      <div class="vote-official-label">Official Vote</div>
+      <button class="own-btn" id="btn-v1" onclick="openOTP('v1')">Verify & Cast Official Vote</button>
+      <div class="vc-meta"><span>3,200 official votes counted</span><span>Closes Apr 6</span></div>
+    </div>
+
+    <!-- Vote 2 -->
+    <div class="vote-card">
+      <div class="vc-top">
+        <span class="vc-badge badge-live">● Live: 12 days left</span>
+      </div>
+      <div class="vc-title">Next product, what should we build?</div>
+      <div class="vc-desc">You've been asking for new products. We can't build all at once. Help us prioritise what comes next.</div>
+
+      <div class="sentiment-strip">
+        <span class="sentiment-label">Community Sentiment</span>
+        <div class="sentiment-sources">
+          <div class="ss-item"><div class="ss-dot ig"></div><span style="color:var(--ig)">Instagram</span>&nbsp;6.1K</div>
+          <div class="ss-item"><div class="ss-dot li"></div><span style="color:var(--li)">LinkedIn</span>&nbsp;980</div>
+        </div>
+        <span class="ss-total">7,080 signals</span>
+      </div>
+
+      <div class="sentiment-note">
+        ⚠️ <strong>Sentiment only.</strong> Social votes give directional signal but can't be deduplicated. Your <strong>official counted vote</strong> happens below, verified once per phone number.
+      </div>
+
+      <div class="vote-options">
+        <div class="vo-row" onclick="pickOption(this,'v2')"><div class="vo-bar-wrap"><div class="vo-fill" style="width:44%"></div><span class="vo-label">High Protein Atta</span></div><span class="vo-pct">44%</span></div>
+        <div class="vo-row" onclick="pickOption(this,'v2')"><div class="vo-bar-wrap"><div class="vo-fill" style="width:33%"></div><span class="vo-label">Clean Protein Cookies</span></div><span class="vo-pct">33%</span></div>
+        <div class="vo-row" onclick="pickOption(this,'v2')"><div class="vo-bar-wrap"><div class="vo-fill" style="width:23%"></div><span class="vo-label">Dark Chocolate Bar</span></div><span class="vo-pct">23%</span></div>
+      </div>
+
+      <div class="vote-official-label">Official Vote</div>
+      <button class="own-btn" id="btn-v2" onclick="openOTP('v2')">Verify & Cast Official Vote</button>
+      <div class="vc-meta"><span>2,840 official votes counted</span><span>Closes Apr 12</span></div>
+    </div>
+
+    <!-- Vote 3: Shipped -->
+    <div class="vote-card">
+      <div class="vc-top"><span class="vc-badge badge-shipped">✓ Shipped</span></div>
+      <div class="vc-title">Should we switch to recycled packaging?</div>
+      <div class="vc-desc">You voted yes (84%). We switched from batch 3. Cost went up ₹18/unit. We absorbed it. Price unchanged for you.</div>
+
+      <div class="sentiment-strip">
+        <span class="sentiment-label">Final Sentiment</span>
+        <div class="sentiment-sources">
+          <div class="ss-item"><div class="ss-dot ig"></div><span style="color:var(--ig)">Instagram</span>&nbsp;17.2K</div>
+          <div class="ss-item"><div class="ss-dot li"></div><span style="color:var(--li)">LinkedIn</span>&nbsp;2.1K</div>
+        </div>
+        <span class="ss-total">19,300 signals</span>
+      </div>
+
+      <div class="vote-options">
+        <div class="vo-row"><div class="vo-bar-wrap selected"><div class="vo-fill selected" style="width:84%"></div><span class="vo-label">Yes, switch to recycled</span></div><span class="vo-pct">84%</span></div>
+        <div class="vo-row"><div class="vo-bar-wrap"><div class="vo-fill" style="width:16%"></div><span class="vo-label">No, keep current</span></div><span class="vo-pct">16%</span></div>
+      </div>
+
+      <div class="vote-official-label">Official Vote</div>
+      <button class="own-btn voted disabled">✓ You voted · Yes (Verified)</button>
+      <div class="vc-meta"><span>8,741 official votes counted</span><span>Outcome implemented</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ FINGERPRINT ══ -->
+<div class="section" id="sec-fingerprint">
+  <div class="section-head">
+    <h2>My Fingerprint</h2>
+    <p>Every verified vote you cast. Every decision it shaped. Your permanent co-creator record.</p>
+  </div>
+  <div class="fp-impact">
+    <div class="fp-stat-card"><span class="fp-stat-num">14</span><span class="fp-stat-lbl">Official Votes Cast</span></div>
+    <div class="fp-stat-card"><span class="fp-stat-num">6</span><span class="fp-stat-lbl">Decisions on Winning Side</span></div>
+    <div class="fp-stat-card"><span class="fp-stat-num">3</span><span class="fp-stat-lbl">Products With Your Input</span></div>
+    <div class="fp-stat-card"><span class="fp-stat-num">Aug '24</span><span class="fp-stat-lbl">Co-Creator Since</span></div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-dot done"></div><div class="tl-card"><div class="tl-card-top"><div class="tl-card-title">Whey Coffee: Batch 4 shipped</div><span class="tl-card-date">Feb 2025</span></div><div class="tl-card-body">The product you helped shape is now in people's hands. Your verified votes on flavour, packaging, and sweeteners are in this batch.<br/><span class="vote-pill">Your votes are in this product</span></div></div></div>
+    <div class="tl-item"><div class="tl-dot active"></div><div class="tl-card"><div class="tl-card-top"><div class="tl-card-title">You voted: High Protein Atta (official)</div><span class="tl-card-date">Mar 2025</span></div><div class="tl-card-body">Vote closes Apr 12. Currently leading with 44% of official votes. If this wins, your vote shaped what OWN builds next.<br/><span class="vote-pill">● Vote in progress</span></div></div></div>
+    <div class="tl-item"><div class="tl-dot done"></div><div class="tl-card"><div class="tl-card-top"><div class="tl-card-title">Recycled packaging: your vote won</div><span class="tl-card-date">Dec 2024</span></div><div class="tl-card-body">84% of official votes said yes. Implemented from batch 3. OWN absorbed the ₹18/unit cost increase.<br/><span class="vote-pill">Decision implemented</span></div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-card"><div class="tl-card-top"><div class="tl-card-title">You voted: No artificial sweeteners, ever</div><span class="tl-card-date">Oct 2024</span></div><div class="tl-card-body">76% agreed. Zero sweeteners across all products. This is in everything OWN makes.<br/><span class="vote-pill">In every product</span></div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-card"><div class="tl-card-top"><div class="tl-card-title">You voted for the name: Only What's Needed</div><span class="tl-card-date">Aug 2024</span></div><div class="tl-card-body">84% voted for this name over "Take Charge". The brand exists because of this vote.<br/><span class="vote-pill">Origin vote</span></div></div></div>
+  </div>
+</div>
+
+<!-- ══ JOURNEY ══ -->
+<div class="section" id="sec-journey">
+  <div class="section-head">
+    <h2>Product Journey</h2>
+    <p>How a product moves from community request to your hands. Nothing happens behind closed doors.</p>
+  </div>
+  <div class="progress-steps">
+    <div class="ps-step done">Community Request</div>
+    <div class="ps-step done">Options Vetted</div>
+    <div class="ps-step done">You Voted</div>
+    <div class="ps-step done">Taste Tested</div>
+    <div class="ps-step done">Lab Testing</div>
+    <div class="ps-step now">In Production</div>
+    <div class="ps-step">Ships to You</div>
+  </div>
+  <div class="journey-grid">
+    <div class="jc"><div class="jc-num">01</div><div class="jc-title">You asked for it</div><div class="jc-body">Over 4,200 people asked for a coffee flavour across Instagram comments and LinkedIn DMs. We tracked it, saw the pattern, and opened a vote.</div></div>
+    <div class="jc"><div class="jc-num">02</div><div class="jc-title">Options vetted before you vote</div><div class="jc-body">Every option is reviewed by nutrition scientists and FSSAI-registered advisors first. You never vote on something that can't be made safely.</div></div>
+    <div class="jc"><div class="jc-num">03</div><div class="jc-title">Community decides</div><div class="jc-body">67% of official votes chose coffee. We didn't pick the most marketable option. The verified majority spoke, and that became the R&D brief.</div></div>
+    <div class="jc"><div class="jc-num">04</div><div class="jc-title">Prototype & blind taste test</div><div class="jc-body">50+ variations built. 120 OWNers blind-tested them. Version 2 won on taste, texture, and mixability. We built more to give you only what's needed.</div></div>
+    <div class="jc"><div class="jc-num">05</div><div class="jc-title">7-parameter lab test every batch</div><div class="jc-body">Every batch tested before it ships: protein, amino acids, heavy metals, pesticides, microbial contamination. All results public.</div></div>
+    <div class="jc"><div class="jc-num">06</div><div class="jc-title">Cost breakdown published</div><div class="jc-body">We show exactly what each pack costs: raw material, testing, packaging, logistics, margin. No hidden markups, no surprises.</div></div>
+  </div>
+  <div class="insight-bar">
+    <div class="insight-bar-label">Why this matters</div>
+    <div class="insight-bar-body">Most brands make decisions in boardrooms. OWN's model is different. <strong>The community is the boardroom.</strong> This view exists so every OWNer can see where a product is, what shaped it, and how their verified vote moved it forward.</div>
+  </div>
+</div>
+
+<!-- ══ TESTS ══ -->
+<div class="section" id="sec-tests">
+  <div class="section-head">
+    <h2>Test Reports</h2>
+    <p>Every batch. Every parameter. Every result. Public, verifiable, permanent. No login required.</p>
+  </div>
+  <div class="batch-tabs">
+    <button class="batch-tab active" onclick="selectBatch(this)">Whey Coffee: Batch 4</button>
+    <button class="batch-tab" onclick="selectBatch(this)">Whey Cocoa: Batch 3</button>
+    <button class="batch-tab" onclick="selectBatch(this)">Whey Isolate: Batch 1</button>
+    <button class="batch-tab" onclick="selectBatch(this)">Plant Protein: Batch 1</button>
+  </div>
+  <div class="tests-grid">
+    <div class="test-card"><div class="tc-top"><div class="tc-name">Protein Accuracy</div><span class="tc-pass">Pass</span></div><div class="tc-result">Declared: <strong>24g / 30g serving</strong><br/>Tested: <strong>24.3g</strong>, above declared</div><div class="tc-bar-wrap"><div class="tc-bar" style="width:95%"></div></div><div class="tc-lab">Eurofins Analytical Services India (NABL)</div><a class="tc-link">View full report →</a></div>
+    <div class="test-card"><div class="tc-top"><div class="tc-name">Amino Acid Profile</div><span class="tc-pass">Pass</span></div><div class="tc-result">All 9 essential amino acids present.<br/><strong>No nitrogen spiking detected.</strong></div><div class="tc-bar-wrap"><div class="tc-bar" style="width:100%"></div></div><div class="tc-lab">Intertek India (NABL)</div><a class="tc-link">View full report →</a></div>
+    <div class="test-card"><div class="tc-top"><div class="tc-name">Heavy Metals</div><span class="tc-pass">Pass</span></div><div class="tc-result">Lead: <strong>ND</strong> · Cadmium: <strong>ND</strong><br/>Arsenic: <strong>ND</strong> · Mercury: <strong>ND</strong></div><div class="tc-bar-wrap"><div class="tc-bar" style="width:100%"></div></div><div class="tc-lab">SGS India Pvt. Ltd. (NABL)</div><a class="tc-link">View full report →</a></div>
+    <div class="test-card"><div class="tc-top"><div class="tc-name">Melamine Spiking</div><span class="tc-pass">Pass</span></div><div class="tc-result">Melamine: <strong>Not Detected</strong><br/>Creatine: <strong>Not Detected</strong></div><div class="tc-bar-wrap"><div class="tc-bar" style="width:100%"></div></div><div class="tc-lab">Eurofins Analytical Services India (NABL)</div><a class="tc-link">View full report →</a></div>
+    <div class="test-card"><div class="tc-top"><div class="tc-name">Microbial Contamination</div><span class="tc-pass">Pass</span></div><div class="tc-result">Total plate count: <strong>within limits</strong><br/>Salmonella: <strong>Absent</strong></div><div class="tc-bar-wrap"><div class="tc-bar" style="width:100%"></div></div><div class="tc-lab">SGS India Pvt. Ltd. (NABL)</div><a class="tc-link">View full report →</a></div>
+    <div class="test-card"><div class="tc-top"><div class="tc-name">Aflatoxins</div><span class="tc-pass">Pass</span></div><div class="tc-result">B1, B2, G1, G2: <strong>ND</strong><br/>Well within FSSAI limits.</div><div class="tc-bar-wrap"><div class="tc-bar" style="width:100%"></div></div><div class="tc-lab">Intertek India (NABL)</div><a class="tc-link">View full report →</a></div>
+    <div class="test-card"><div class="tc-top"><div class="tc-name">Pesticide Residue</div><span class="tc-pass">Pass</span></div><div class="tc-result">220 pesticides screened.<br/><strong>All below detection limits.</strong></div><div class="tc-bar-wrap"><div class="tc-bar" style="width:100%"></div></div><div class="tc-lab">Eurofins Analytical Services India (NABL)</div><a class="tc-link">View full report →</a></div>
+    <div class="test-card"><div class="tc-top"><div class="tc-name">Caffeine Content</div><span class="tc-pass">Pass</span></div><div class="tc-result">Declared: <strong>~80mg / serving</strong><br/>Tested: <strong>78mg</strong>, within range</div><div class="tc-bar-wrap"><div class="tc-bar" style="width:90%"></div></div><div class="tc-lab">SGS India Pvt. Ltd. (NABL)</div><a class="tc-link">View full report →</a></div>
+  </div>
+  <br/>
+  <div class="insight-bar">
+    <div class="insight-bar-label">The gap this closes</div>
+    <div class="insight-bar-body">OWN's test reports currently live behind a login. <strong>This is what they look like as a public, batch-level interface</strong> where any user can verify any claim on any product without needing an account. That's the difference between saying "we're transparent" and building it into the product.</div>
+  </div>
+</div>
+
+<!-- ══ LABEL TRANSLATOR ══ -->
+<div class="section" id="sec-translator">
+  <div class="section-head">
+    <h2>Label Translator</h2>
+    <p>OWN has been polling users on which regional languages matter most. This is what happens when that poll becomes a permanent platform feature.</p>
+  </div>
+
+  <div class="lt-hero">
+    <div class="lt-hero-left">
+      <div class="lt-hero-tag">First of its kind in Indian D2C</div>
+      <h3>Read every label in your language.<br/>Understand every ingredient.</h3>
+      <p>Not just a translation, a decoder. "Emulsifier 471" means nothing to most Indians. In your language, with context, it does. OWN's polls this week asked which languages to build first. This is what that looks like when it's live.</p>
+    </div>
+    <div class="lang-selector-wrap">
+      <div class="lang-selector-label">Choose your language</div>
+      <select class="lang-selector" id="lang-select" onchange="updateLanguage()">
+        <option value="en">English</option>
+        <option value="hi">हिंदी / Hindi</option>
+        <option value="mr">मराठी / Marathi</option>
+        <option value="te">తెలుగు / Telugu</option>
+        <option value="ta">தமிழ் / Tamil</option>
+        <option value="bn">বাংলা / Bengali</option>
+        <option value="gu">ગુજરાતી / Gujarati</option>
+        <option value="kn">ಕನ್ನಡ / Kannada</option>
+      </select>
+      <div style="font-size:11px;color:#ABABAB;margin-top:4px;">More languages voted by the community</div>
+    </div>
+  </div>
+
+  <div class="lt-product-selector">
+    <button class="lt-prod-btn active" onclick="selectProduct(this,'whey-coffee')">Whey Coffee</button>
+    <button class="lt-prod-btn" onclick="selectProduct(this,'whey-cocoa')">Whey Cocoa</button>
+    <button class="lt-prod-btn" onclick="selectProduct(this,'plant-coffee')">Plant Protein Coffee</button>
+    <button class="lt-prod-btn" onclick="selectProduct(this,'whey-isolate')">Whey Isolate</button>
+  </div>
+
+  <div class="lt-layout">
+
+    <!-- NUTRITION LABEL -->
+    <div class="lt-panel">
+      <div class="lt-panel-header">
+        <div class="lt-panel-title" id="nl-panel-title">Nutrition Facts</div>
+        <span class="lt-panel-badge" id="nl-lang-badge">English</span>
+      </div>
+      <div class="lt-panel-body">
+        <div class="nutrition-label">
+          <div class="nl-title" id="nl-title">Nutrition Facts</div>
+          <div class="nl-serving" id="nl-serving">Serving size: 30g (1 scoop) · Servings per pack: 33</div>
+          <div class="nl-row header">
+            <span class="nl-row-name" id="nl-per-serving">Per Serving</span>
+            <span class="nl-row-name" id="nl-per-100">Per 100g</span>
+          </div>
+          <div class="nl-row"><span class="nl-row-name" id="nl-energy">Energy</span><span class="nl-row-val">113 kcal</span></div>
+          <div class="nl-row"><span class="nl-row-name" id="nl-protein">Protein</span><span class="nl-row-val">24g</span></div>
+          <div class="nl-row"><span class="nl-row-name" id="nl-carbs">Carbohydrates</span><span class="nl-row-val">2.1g</span></div>
+          <div class="nl-row" style="padding-left:16px"><span class="nl-row-name" id="nl-sugars" style="font-size:12px;color:var(--muted)">of which Sugars</span><span class="nl-row-val" style="font-size:12px">0.8g</span></div>
+          <div class="nl-row"><span class="nl-row-name" id="nl-fat">Total Fat</span><span class="nl-row-val">1.4g</span></div>
+          <div class="nl-row"><span class="nl-row-name" id="nl-sodium">Sodium</span><span class="nl-row-val">55mg</span></div>
+          <div class="nl-row"><span class="nl-row-name" id="nl-caffeine">Caffeine</span><span class="nl-row-val">~80mg</span></div>
+        </div>
+
+        <div class="lt-poll-strip" style="margin-top:16px;">
+          <div class="lt-poll-icon">🗳️</div>
+          <div class="lt-poll-text">
+            <strong>Which language should we add next?</strong>
+            <span>Punjabi, Odia, and Malayalam are currently being voted on.</span>
+          </div>
+          <button class="lt-poll-btn" onclick="switchTab('votes', document.querySelectorAll('.tab-btn')[0])">Vote Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- INGREDIENT DECODER -->
+    <div class="lt-panel">
+      <div class="lt-panel-header">
+        <div class="lt-panel-title" id="dec-panel-title">Ingredient Decoder</div>
+        <span class="lt-panel-badge">What's actually in it & why</span>
+      </div>
+      <div class="lt-panel-body">
+        <div class="ingredient-decoder" id="ingredient-decoder">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const voted = {}, selected = {};
+  let currentVote = null;
+
+  // ── LANGUAGE DATA ──
+  const langData = {
+    en: {
+      badge: 'English',
+      nlTitle: 'Nutrition Facts',
+      nlServing: 'Serving size: 30g (1 scoop) · Servings per pack: 33',
+      nlPerServing: 'Per Serving', nlPer100: 'Per 100g',
+      nlEnergy: 'Energy', nlProtein: 'Protein', nlCarbs: 'Carbohydrates',
+      nlSugars: 'of which Sugars', nlFat: 'Total Fat', nlSodium: 'Sodium', nlCaffeine: 'Caffeine',
+      panelTitle: 'Nutrition Facts', decTitle: 'Ingredient Decoder',
+    },
+    hi: {
+      badge: 'हिंदी',
+      nlTitle: 'पोषण संबंधी तथ्य',
+      nlServing: 'प्रति सेवा: 30ग्राम (1 स्कूप) · प्रति पैक: 33 सेवाएं',
+      nlPerServing: 'प्रति सेवा', nlPer100: 'प्रति 100ग्राम',
+      nlEnergy: 'ऊर्जा', nlProtein: 'प्रोटीन', nlCarbs: 'कार्बोहाइड्रेट',
+      nlSugars: 'जिसमें शर्करा', nlFat: 'कुल वसा', nlSodium: 'सोडियम', nlCaffeine: 'कैफीन',
+      panelTitle: 'पोषण संबंधी तथ्य', decTitle: 'सामग्री डीकोडर',
+    },
+    mr: {
+      badge: 'मराठी',
+      nlTitle: 'पोषण माहिती',
+      nlServing: 'प्रति सर्व्हिंग: 30ग्रॅम (1 स्कूप) · प्रति पॅक: 33 सर्व्हिंग',
+      nlPerServing: 'प्रति सर्व्हिंग', nlPer100: 'प्रति 100ग्रॅम',
+      nlEnergy: 'ऊर्जा', nlProtein: 'प्रथिने', nlCarbs: 'कर्बोदके',
+      nlSugars: 'त्यापैकी साखर', nlFat: 'एकूण स्निग्धांश', nlSodium: 'सोडियम', nlCaffeine: 'कॅफीन',
+      panelTitle: 'पोषण माहिती', decTitle: 'घटक डीकोडर',
+    },
+    te: {
+      badge: 'తెలుగు',
+      nlTitle: 'పోషక విలువలు',
+      nlServing: 'సర్వింగ్ పరిమాణం: 30గ్రా (1 స్కూప్) · ప్యాక్‌కు: 33 సర్వింగులు',
+      nlPerServing: 'సర్వింగ్‌కు', nlPer100: '100గ్రాకు',
+      nlEnergy: 'శక్తి', nlProtein: 'ప్రోటీన్', nlCarbs: 'కార్బోహైడ్రేట్లు',
+      nlSugars: 'అందులో చక్కెర', nlFat: 'మొత్తం కొవ్వు', nlSodium: 'సోడియం', nlCaffeine: 'కెఫీన్',
+      panelTitle: 'పోషక విలువలు', decTitle: 'పదార్థాల డీకోడర్',
+    },
+    ta: {
+      badge: 'தமிழ்',
+      nlTitle: 'ஊட்டச்சத்து தகவல்கள்',
+      nlServing: 'பரிமாறும் அளவு: 30கி (1 ஸ்கூப்) · தொகுப்புக்கு: 33 பரிமாறல்கள்',
+      nlPerServing: 'ஒரு பரிமாறலுக்கு', nlPer100: '100கிக்கு',
+      nlEnergy: 'ஆற்றல்', nlProtein: 'புரதம்', nlCarbs: 'கார்போஹைட்ரேட்',
+      nlSugars: 'இதில் சர்க்கரை', nlFat: 'மொத்த கொழுப்பு', nlSodium: 'சோடியம்', nlCaffeine: 'காஃபின்',
+      panelTitle: 'ஊட்டச்சத்து தகவல்கள்', decTitle: 'பொருட்கள் டீகோடர்',
+    },
+    bn: {
+      badge: 'বাংলা',
+      nlTitle: 'পুষ্টির তথ্য',
+      nlServing: 'পরিবেশনের আকার: ৩০গ্রা (১ স্কুপ) · প্যাকে: ৩৩ পরিবেশন',
+      nlPerServing: 'প্রতি পরিবেশনে', nlPer100: 'প্রতি ১০০গ্রামে',
+      nlEnergy: 'শক্তি', nlProtein: 'প্রোটিন', nlCarbs: 'কার্বোহাইড্রেট',
+      nlSugars: 'যার মধ্যে চিনি', nlFat: 'মোট ফ্যাট', nlSodium: 'সোডিয়াম', nlCaffeine: 'ক্যাফেইন',
+      panelTitle: 'পুষ্টির তথ্য', decTitle: 'উপাদান ডিকোডার',
+    },
+    gu: {
+      badge: 'ગુજરાતી',
+      nlTitle: 'પોષણ માહિતી',
+      nlServing: 'સર્વિંગ સાઈઝ: 30ગ્રા (1 સ્કૂપ) · પ્રતિ પૅક: 33 સર્વિંગ',
+      nlPerServing: 'પ્રતિ સર્વિંગ', nlPer100: 'પ્રતિ 100ગ્રા',
+      nlEnergy: 'ઉર્જા', nlProtein: 'પ્રોટીન', nlCarbs: 'કાર્બોહાઇડ્રેટ',
+      nlSugars: 'જેમાં ખાંડ', nlFat: 'કુલ ચરબી', nlSodium: 'સોડિયમ', nlCaffeine: 'કેફીન',
+      panelTitle: 'પોષણ માહિતી', decTitle: 'ઘટક ડીકોડર',
+    },
+    kn: {
+      badge: 'ಕನ್ನಡ',
+      nlTitle: 'ಪೋಷಣಾ ಮಾಹಿತಿ',
+      nlServing: 'ಸರ್ವಿಂಗ್ ಗಾತ್ರ: 30ಗ್ರಾ (1 ಸ್ಕೂಪ್) · ಪ್ಯಾಕ್‌ಗೆ: 33 ಸರ್ವಿಂಗ್',
+      nlPerServing: 'ಪ್ರತಿ ಸರ್ವಿಂಗ್', nlPer100: 'ಪ್ರತಿ 100ಗ್ರಾ',
+      nlEnergy: 'ಶಕ್ತಿ', nlProtein: 'ಪ್ರೋಟೀನ್', nlCarbs: 'ಕಾರ್ಬೋಹೈಡ್ರೇಟ್',
+      nlSugars: 'ಅದರಲ್ಲಿ ಸಕ್ಕರೆ', nlFat: 'ಒಟ್ಟು ಕೊಬ್ಬು', nlSodium: 'ಸೋಡಿಯಂ', nlCaffeine: 'ಕೆಫೀನ್',
+      panelTitle: 'ಪೋಷಣಾ ಮಾಹಿತಿ', decTitle: 'ಪದಾರ್ಥ ಡೀಕೋಡರ್',
+    },
+  };
+
+  // ── INGREDIENT DATA ──
+  const ingredients = {
+    'whey-coffee': [
+      {
+        en: 'Whey Protein Concentrate',
+        t: { hi: 'व्हे प्रोटीन कॉन्सेंट्रेट', mr: 'व्हे प्रथिने सांद्र', te: 'వే ప్రోటీన్ కాన్సంట్రేట్', ta: 'வே புரத செறிவு', bn: 'হোয়ে প্রোটিন কনসেন্ট্রেট', gu: 'વ્હે પ્રોટીન કોન્સેન્ટ્રેટ', kn: 'ವೇ ಪ್ರೋಟೀನ್ ಕಾನ್ಸೆಂಟ್ರೇಟ್' },
+        why: "Sourced from cow's milk. Provides all 9 essential amino acids. OWN uses WPC80: 80% protein by weight, no fillers added.",
+        whyT: {
+          hi: 'गाय के दूध से प्राप्त। सभी 9 आवश्यक अमीनो एसिड प्रदान करता है। OWN WPC80 उपयोग करता है: वजन के हिसाब से 80% प्रोटीन, कोई फिलर नहीं।',
+          mr: 'गाईच्या दुधापासून मिळवलेले. सर्व 9 आवश्यक अमीनो ऍसिड पुरवते. OWN WPC80 वापरते: वजनाने 80% प्रथिने, कोणतेही फिलर नाही.',
+          te: 'ఆవు పాల నుండి తీసుకోబడింది. అన్ని 9 అవసరమైన అమినో యాసిడ్‌లు అందిస్తుంది. OWN WPC80 ఉపయోగిస్తుంది: బరువులో 80% ప్రోటీన్, ఫిల్లర్లు లేవు.',
+          ta: 'பசுவின் பாலில் இருந்து பெறப்படுகிறது. அனைத்து 9 அவசியமான அமினோ அமிலங்களையும் வழங்குகிறது. OWN WPC80 பயன்படுத்துகிறது: எடையில் 80% புரதம், நிரப்பிகள் இல்லை.',
+          bn: 'গরুর দুধ থেকে পাওয়া। সমস্ত ৯টি প্রয়োজনীয় অ্যামিনো অ্যাসিড সরবরাহ করে। OWN WPC80 ব্যবহার করে: ওজনে ৮০% প্রোটিন, কোনো ফিলার নেই।',
+          gu: 'ગાયના દૂધમાંથી મેળવેલ. બધા 9 આવશ્યક એમિનો એસિડ આપે છે. OWN WPC80 વાપરે છે: વજન પ્રમાણે 80% પ્રોટીન, કોઈ ફિલર નહીં.',
+          kn: 'ಹಸುವಿನ ಹಾಲಿನಿಂದ ಪಡೆಯಲಾಗಿದೆ. ಎಲ್ಲಾ 9 ಅಗತ್ಯ ಅಮಿನೋ ಆಮ್ಲಗಳನ್ನು ಒದಗಿಸುತ್ತದೆ. OWN WPC80 ಬಳಸುತ್ತದೆ: ತೂಕದಲ್ಲಿ 80% ಪ್ರೋಟೀನ್, ಫಿಲ್ಲರ್‌ಗಳಿಲ್ಲ.'
+        },
+        badges: [
+          { type: 'clean', t: { en: 'Clean', hi: 'शुद्ध', mr: 'शुद्ध', te: 'స్వచ్ఛమైన', ta: 'தூய்மையான', bn: 'পরিষ্কার', gu: 'શુદ્ધ', kn: 'ಶುದ್ಧ' } },
+          { type: 'source', t: { en: 'Source: Indian Dairy', hi: 'स्रोत: भारतीय डेयरी', mr: 'स्रोत: भारतीय दुग्धजन्य', te: 'మూలం: భారతీయ పాల', ta: 'மூலம்: இந்திய பால்', bn: 'উৎস: ভারতীয় দুগ্ধ', gu: 'સ્રોત: ભારતીય ડેરી', kn: 'ಮೂಲ: ಭಾರತೀಯ ಡೇರಿ' } },
+          { type: 'function', t: { en: 'Function: Primary Protein', hi: 'कार्य: मुख्य प्रोटीन', mr: 'कार्य: मुख्य प्रथिने', te: 'పని: ప్రధాన ప్రోటీన్', ta: 'செயல்பாடு: முதன்மை புரதம்', bn: 'কাজ: প্রাথমিক প্রোটিন', gu: 'કાર્ય: મુખ્ય પ્રોટીન', kn: 'ಕಾರ್ಯ: ಪ್ರಾಥಮಿಕ ಪ್ರೋಟೀನ್' } }
+        ]
+      },
+      {
+        en: 'Real Coffee Powder',
+        t: { hi: 'असली कॉफी पाउडर', mr: 'खरी कॉफी पावडर', te: 'నిజమైన కాఫీ పౌడర్', ta: 'உண்மையான காபி தூள்', bn: 'আসল কফি পাউডার', gu: 'અસલ કૉફી પાઉડર', kn: 'ನಿಜವಾದ ಕಾಫಿ ಪೌಡರ್' },
+        why: 'Not coffee flavouring but actual ground coffee. Provides about 80mg caffeine per scoop naturally. This is why OWN protein froths like real coffee when shaken.',
+        whyT: {
+          hi: '"कॉफी फ्लेवरिंग" नहीं, असली पिसी हुई कॉफी। प्रति स्कूप लगभग 80mg कैफीन प्राकृतिक रूप से मिलती है। इसीलिए OWN प्रोटीन को हिलाने पर असली कॉफी जैसा झाग बनता है।',
+          mr: 'कॉफी फ्लेवरिंग नाही, खरोखरची दळलेली कॉफी. प्रत्येक स्कूपमध्ये नैसर्गिकरित्या सुमारे 80mg कॅफीन मिळते. म्हणूनच OWN प्रोटीन हलवल्यावर खऱ्या कॉफीसारखा फेस येतो.',
+          te: 'కాఫీ ఫ్లేవరింగ్ కాదు, నిజమైన గ్రౌండ్ కాఫీ. ప్రతి స్కూప్‌కు సహజంగా సుమారు 80mg కెఫీన్ అందిస్తుంది. అందుకే OWN ప్రోటీన్ కదిలించినప్పుడు నిజమైన కాఫీలా నురుగు వస్తుంది.',
+          ta: 'காபி ஃப்ளேவரிங் அல்ல, உண்மையான அரைத்த காபி. ஒவ்வொரு ஸ்கூப்பிலும் இயற்கையாக சுமார் 80mg காஃபின் கிடைக்கிறது. அதனால்தான் OWN புரதத்தை குலுக்கும்போது உண்மையான காபி போல நுரை வருகிறது.',
+          bn: 'কফি ফ্লেভারিং নয়, আসল গ্রাউন্ড কফি। প্রতি স্কুপে প্রাকৃতিকভাবে প্রায় ৮০mg ক্যাফেইন পাওয়া যায়। তাই OWN প্রোটিন ঝাঁকালে আসল কফির মতো ফেনা তৈরি হয়।',
+          gu: 'કૉફી ફ્લેવરિંગ નહીં, અસલ ગ્રાઉન્ડ કૉફી. દરેક સ્કૂપ દ્વારા કુદરતી રીતે લગભગ 80mg કૅફીન મળે છે. તેથી OWN પ્રોટીન હલાવવામાં આવે ત્યારે અસલ કૉફી જેવો ફીણ આવે છે.',
+          kn: 'ಕಾಫಿ ಫ್ಲೇವರಿಂಗ್ ಅಲ್ಲ, ನಿಜವಾದ ಗ್ರೌಂಡ್ ಕಾಫಿ. ಪ್ರತಿ ಸ್ಕೂಪ್‌ಗೆ ಸ್ವಾಭಾವಿಕವಾಗಿ ಸುಮಾರು 80mg ಕೆಫೀನ್ ಸಿಗುತ್ತದೆ. ಅದಕ್ಕಾಗಿಯೇ OWN ಪ್ರೋಟೀನ್ ಅಲ್ಲಾಡಿಸಿದಾಗ ನಿಜವಾದ ಕಾಫಿಯಂತೆ ನೊರೆ ಬರುತ್ತದೆ.'
+        },
+        badges: [
+          { type: 'clean', t: { en: 'Clean', hi: 'शुद्ध', mr: 'शुद्ध', te: 'స్వచ్ఛమైన', ta: 'தூய்மையான', bn: 'পরিষ্কার', gu: 'શुদ್ధ', kn: 'ಶुद್ಧ' } },
+          { type: 'source', t: { en: 'Source: Coorg, Karnataka', hi: 'स्रोत: कूर्ग, कर्नाटक', mr: 'स्रोत: कूर्ग, कर्नाटक', te: 'మూలం: కూర్గ్, కర్ణాటక', ta: 'மூலம்: கூர்க், கர்நாடகா', bn: 'উৎস: কুর্গ, কর্ণাটক', gu: 'સ્રોત: કૂર્ગ, કર્ણાટક', kn: 'ಮೂಲ: ಕೊಡಗು, ಕರ್ನಾಟಕ' } },
+          { type: 'function', t: { en: 'Function: Flavour + Caffeine', hi: 'कार्य: स्वाद + कैफीन', mr: 'कार्य: चव + कॅफीन', te: 'పని: రుచి + కెఫీన్', ta: 'செயல்பாடு: சுவை + காஃபின்', bn: 'কাজ: স্বাদ + ক্যাফেইন', gu: 'કાર્ય: સ્વાદ + કૅફીન', kn: 'ಕಾರ್ಯ: ರುಚಿ + ಕೆಫೀನ್' } }
+        ]
+      },
+      {
+        en: 'Stevia Leaf Extract',
+        t: { hi: 'स्टेविया पत्ती अर्क', mr: 'स्टेविया पान अर्क', te: 'స్టెవియా ఆకు సారం', ta: 'ஸ்டீவியா இலை சாறு', bn: 'স্টেভিয়া পাতার নির্যাস', gu: 'સ્ટેવિયા પાન અર્ક', kn: 'ಸ್ಟೀವಿಯಾ ಎಲೆ ಸಾರ' },
+        why: 'A natural plant-derived sweetener: zero calories, zero glycaemic impact. OWN chose stevia over artificial sweeteners like sucralose or aspartame because it has no synthetic chemicals.',
+        whyT: {
+          hi: 'एक प्राकृतिक पौधे से प्राप्त मिठास: शून्य कैलोरी, शून्य ग्लाइसेमिक प्रभाव। OWN ने sucralose या aspartame की जगह स्टेविया चुना क्योंकि इसमें कोई सिंथेटिक रसायन नहीं है।',
+          mr: 'नैसर्गिक वनस्पतीपासून मिळालेली गोडी: शून्य कॅलोरी, शून्य ग्लायसेमिक प्रभाव. sucralose किंवा aspartame ऐवजी OWN ने स्टेविया निवडले कारण त्यात कोणतेही सिंथेटिक रसायन नाही.',
+          te: 'సహజ మొక్క నుండి తీసుకున్న తీపి: శూన్య కేలరీలు, శూన్య గ్లైసెమిక్ ప్రభావం. sucralose లేదా aspartame కంటే స్టెవియాను OWN ఎంచుకుంది ఎందుకంటే దీనిలో సింథటిక్ రసాయనాలు లేవు.',
+          ta: 'இயற்கையான தாவர மூல இனிப்பு: பூஜ்ய கலோரிகள், பூஜ்ய கிளைசெமிக் தாக்கம். sucralose அல்லது aspartame க்கு பதில் OWN ஸ்டீவியாவை தேர்ந்தெடுத்தது ஏனெனில் இதில் செயற்கை ரசாயனங்கள் இல்லை.',
+          bn: 'একটি প্রাকৃতিক উদ্ভিদ-উৎপন্ন মিষ্টি: শূন্য ক্যালোরি, শূন্য গ্লাইসেমিক প্রভাব। sucralose বা aspartame র পরিবর্তে OWN স্টেভিয়া বেছে নিয়েছে কারণ এতে কোনো সিন্থেটিক রাসায়নিক নেই।',
+          gu: 'કુદરતી વનસ્પતિ-ઉત્પન્ન મીઠાસ: શૂન્ય કૅલોરી, શૂન્ય ગ્લાઇસેમિક અસર. sucralose અથવા aspartame ને બદલે OWN એ સ્ટેવિયા પસંદ કર્યું કારણ કે તેમાં કોઈ સિન્થેટિક રાસાયણ નથી.',
+          kn: 'ನೈಸರ್ಗಿಕ ಸಸ್ಯ-ಆಧಾರಿತ ಸಿಹಿ: ಶೂನ್ಯ ಕ್ಯಾಲೋರಿಗಳು, ಶೂನ್ಯ ಗ್ಲೈಸೆಮಿಕ್ ಪರಿಣಾಮ. sucralose ಅಥವಾ aspartame ಬದಲು OWN ಸ್ಟೀವಿಯಾ ಆಯ್ಕೆ ಮಾಡಿತು ಏಕೆಂದರೆ ಇದರಲ್ಲಿ ಕೃತಕ ರಾಸಾಯನಿಕಗಳಿಲ್ಲ.'
+        },
+        badges: [
+          { type: 'clean', t: { en: 'Clean', hi: 'शुद्ध', mr: 'शुद्ध', te: 'స్వచ్ఛమైన', ta: 'தூய்மையான', bn: 'পরিষ্কার', gu: 'શુદ્ધ', kn: 'ಶुद್ಧ' } },
+          { type: 'source', t: { en: 'Source: Plant-derived', hi: 'स्रोत: पौधे से प्राप्त', mr: 'स्रोत: वनस्पतीजन्य', te: 'మూలం: మొక్క నుండి', ta: 'மூலம்: தாவரத்திலிருந்து', bn: 'উৎস: উদ্ভিদ-উৎপন্ন', gu: 'સ્રોત: વનસ્પતિ-ઉત્પન્ન', kn: 'ಮೂಲ: ಸಸ್ಯ-ಆಧಾರಿತ' } },
+          { type: 'function', t: { en: 'Function: Sweetener', hi: 'कार्य: मिठास', mr: 'कार्य: गोडवा', te: 'పని: తీపి', ta: 'செயல்பாடு: இனிப்பான்', bn: 'কাজ: মিষ্টি', gu: 'કાર્ય: ગળपણ', kn: 'ಕಾರ್ಯ: ಸಿಹಿಕಾರಕ' } }
+        ]
+      },
+      {
+        en: 'Digestive Enzymes (Protease)',
+        t: { hi: 'पाचक एंजाइम (प्रोटीज)', mr: 'पाचक एंझाइम्स (प्रोटीज)', te: 'జీర్ణ ఎంజైమ్‌లు (ప్రోటీజ్)', ta: 'செரிமான நொதிகள் (புரோட்டீஸ்)', bn: 'হজম এনজাইম (প্রোটিজ)', gu: 'પાચક ઉત્સેચક (પ્રોટીઝ)', kn: 'ಜೀರ್ಣಕ ಕಿಣ್ವಗಳು (ಪ್ರೋಟೀಸ್)' },
+        why: 'Helps break down protein into amino acids more efficiently. Reduces bloating, common with whey protein. Added because the community asked for a protein that is light on the stomach.',
+        whyT: {
+          hi: 'प्रोटीन को अमीनो एसिड में अधिक कुशलता से तोड़ने में मदद करता है। व्हे प्रोटीन के साथ आम समस्या पेट फूलने को कम करता है। समुदाय ने पेट के लिए हल्का प्रोटीन मांगा इसलिए यह जोड़ा गया।',
+          mr: 'प्रथिने अमीनो ऍसिडमध्ये अधिक कार्यक्षमतेने मोडण्यास मदत करते. व्हे प्रोटीनसोबत सामान्य समस्या पोट फुगण्याची कमी करते. समुदायाने पोटावर हलके प्रोटीन मागितल्यामुळे हे जोडले गेले.',
+          te: 'ప్రోటీన్‌ను అమినో యాసిడ్‌లుగా మరింత సమర్థవంతంగా విభజిస్తుంది. వే ప్రోటీన్‌తో సాధారణ సమస్య అయిన ఉబ్బరాన్ని తగ్గిస్తుంది. కడుపుకు తేలికైన ప్రోటీన్ కావాలని కమ్యూనిటీ అడిగినందుకు ఇది చేర్చారు.',
+          ta: 'புரதத்தை அமினோ அமிலங்களாக திறமையாக உடைக்கிறது. வே புரதத்துடன் பொதுவான வீக்கத்தை குறைக்கிறது. வயிற்றுக்கு இலகுவான புரதம் வேண்டும் என்று சமூகம் கேட்டதால் சேர்க்கப்பட்டது.',
+          bn: 'প্রোটিনকে আরও দক্ষতার সাথে অ্যামিনো অ্যাসিডে ভাঙে। হোয়ে প্রোটিনের সাথে সাধারণ সমস্যা ফোলাভাব কমায়। পেটের জন্য হালকা প্রোটিন চাওয়ায় এটি যোগ করা হয়েছে।',
+          gu: 'પ્રોટીનને અમીનો એસિડ્સમાં વધુ કાર્યક્ષમ રીતે તોડે છે. Whey protein સાથે સામાન્ય ફરિยાદ પેટ ફૂલવું ઘટાડે છે. સમુદાયે પેટ માટે હળવું પ્રોટીન માંગ્યું હોવાથી ઉમેરવામાં આવ્યું.',
+          kn: 'ಪ್ರೋಟೀನ್ ಅನ್ನು ಅಮಿನೋ ಆಮ್ಲಗಳಾಗಿ ಹೆಚ್ಚು ಪರಿಣಾಮಕಾರಿಯಾಗಿ ಒಡೆಯುತ್ತದೆ. ವೇ ಪ್ರೋಟೀನ್‌ನೊಂದಿಗೆ ಸಾಮಾನ್ಯ ಸಮಸ್ಯೆ ಉಬ್ಬರ ಕಡಿಮೆ ಮಾಡುತ್ತದೆ. ಹೊಟ್ಟೆಗೆ ಹಗುರವಾದ ಪ್ರೋಟೀನ್ ಬೇಕು ಎಂದು ಸಮುದಾಯ ಕೇಳಿದ ಕಾರಣ ಸೇರಿಸಲಾಯಿತು.'
+        },
+        badges: [
+          { type: 'clean', t: { en: 'Clean', hi: 'शुद्ध', mr: 'शुद्ध', te: 'స్వచ్ఛమైన', ta: 'தூய்மையான', bn: 'পরিষ্কার', gu: 'શુદ્ધ', kn: 'ಶुद್ಧ' } },
+          { type: 'source', t: { en: 'Source: Fermentation-derived', hi: 'स्रोत: किण्वन से प्राप्त', mr: 'स्रोत: किण्वनजन्य', te: 'మూలం: కిణ్వన ప్రక్రియ నుండి', ta: 'மூலம்: நொதித்தலில் இருந்து', bn: 'উৎস: গাঁজন থেকে', gu: 'સ્રોત: આથો ક્રિયાથી', kn: 'ಮೂಲ: ಹುದುಗುವಿಕೆಯಿಂದ' } },
+          { type: 'function', t: { en: 'Function: Improves Absorption', hi: 'कार्य: अवशोषण बेहतर करता है', mr: 'कार्य: शोषण सुधारते', te: 'పని: శోషణను మెరుగుపరుస్తుంది', ta: 'செயல்பாடு: உறிஞ்சுதலை மேம்படுத்துகிறது', bn: 'কাজ: শোষণ উন্নত করে', gu: 'કાર્ય: શોષণ સuধारे છे', kn: 'ಕಾರ್ಯ: ಹೀರಿಕೊಳ್ಳುವಿಕೆ ಸುಧಾರಿಸುತ್ತದೆ' } }
+        ]
+      }
+    ],
+    'whey-cocoa': [
+      {
+        en: 'Whey Protein Concentrate',
+        t: { hi: 'व्हे प्रोटीन कॉन्सेंट्रेट', mr: 'व्हे प्रथिने सांद्र', te: 'వే ప్రోటీన్ కాన్సంట్రేట్', ta: 'வே புரத செறிவு', bn: 'হোয়ে প্রোটিন কনসেন্ট্রেট', gu: 'વ્હે પ્રોటીન કોન્સેન્ટ્રેટ', kn: 'ವೇ ಪ್ರೋಟೀನ್ ಕಾನ್ಸೆಂಟ್ರೇಟ್' },
+        why: 'Same source as our coffee variant. WPC80 from Indian dairy. No added fillers, binders, or anti-caking agents.',
+        whyT: {
+          hi: 'हमारे कॉफी वेरिएंट के समान स्रोत। भारतीय डेयरी से WPC80। कोई फिलर, बाइंडर या एंटी-केकिंग एजेंट नहीं।',
+          mr: 'आमच्या कॉफी प्रकाराचा समान स्रोत. भारतीय दुग्धोद्योगातून WPC80. कोणतेही फिलर, बाइंडर किंवा अँटी-केकिंग एजंट नाही.',
+          te: 'మా కాఫీ వేరియంట్ వలె అదే మూలం. భారతీయ డైరీ నుండి WPC80. ఫిల్లర్లు, బైండర్లు లేదా యాంటీ-కేకింగ్ ఏజెంట్లు లేవు.',
+          ta: 'எங்கள் காபி வகையின் அதே மூலம். இந்திய பால் பொருட்களிலிருந்து WPC80. நிரப்பிகள், பைண்டர்கள் அல்லது Anti-caking agents இல்லை.',
+          bn: 'আমাদের কফি ভেরিয়েন্টের মতো একই উৎস। ভারতীয় দুগ্ধ থেকে WPC80। কোনো ফিলার, বাইন্ডার বা অ্যান্টি-কেকিং এজেন্ট নেই।',
+          gu: 'આપણા કૉફી વেરિઅન્ટ સ્ત્રોત. ભારतीय ડেरीমांથી WPC80. ফিলার, बाइंडर அথवा Anti-caking agents নাহীं.',
+          kn: 'ನಮ್ಮ ಕಾಫಿ ವೇರಿಯಂಟ್‌ನಂತೆ ಅದೇ ಮೂಲ. ಭಾರತೀಯ ಡೇರಿಯಿಂದ WPC80. ಫಿಲ್ಲರ್‌ಗಳು, ಬೈಂಡರ್‌ಗಳು ಅಥವಾ ಆಂಟಿ-ಕೇಕಿಂಗ್ ಏಜೆಂಟ್‌ಗಳಿಲ್ಲ.'
+        },
+        badges: [
+          { type: 'clean', t: { en: 'Clean', hi: 'शुद्ध', mr: 'शुद्ध', te: 'స్వచ్ఛమైన', ta: 'தூய்மையான', bn: 'পরিষ্কার', gu: 'શુદ્ધ', kn: 'ಶುದ್ಧ' } },
+          { type: 'source', t: { en: 'Source: Indian Dairy', hi: 'स्रोत: भारतीय डेयरी', mr: 'स्रोत: भारतीय दुग्धजन्य', te: 'మూలం: భారతీయ పాల', ta: 'மூலம்: இந்திய பால்', bn: 'উৎস: ভারতীয় দুগ্ধ', gu: 'સ્રোત: ભારতीय डेरी', kn: 'ಮೂಲ: ಭಾರತೀಯ ಡೇರಿ' } },
+          { type: 'function', t: { en: 'Function: Primary Protein', hi: 'कार्य: मुख्य प्रोटीन', mr: 'कार्य: मुख्य प्रथिने', te: 'పని: ప్రధాన ప్రోటీన్', ta: 'செயல்பாடு: முதன்மை புரதம்', bn: 'কাজ: প্রাথমিক প্রোটিন', gu: 'કાર્ય: મુખ્ય પ્રોટીન', kn: 'ಕಾರ್ಯ: ಪ್ರಾಥಮಿಕ ಪ್ರೋಟೀನ್' } }
+        ]
+      },
+      {
+        en: 'Natural Cocoa Powder',
+        t: { hi: 'प्राकृतिक कोको पाउडर', mr: 'नैसर्गिक कोको पावडर', te: 'సహజ కోకో పౌడర్', ta: 'இயற்கை கொக்கோ தூள்', bn: 'প্রাকৃতিক কোকো পাউডার', gu: 'કুदरती कोको पाउडर', kn: 'ನೈಸರ್ಗಿಕ ಕೋಕೋ ಪೌಡರ್' },
+        why: 'Unsweetened, non-alkalized cocoa. No chocolate flavouring. The taste comes from real cocoa beans. Also a source of antioxidants.',
+        whyT: {
+          hi: 'बिना मिठास का, गैर-क्षारीकृत कोको। कोई चॉकलेट फ्लेवरिंग नहीं। स्वाद असली कोको बीन्स से आता है। यह एंटीऑक्सीडेंट का भी स्रोत है।',
+          mr: 'गोडाविरहित, नॉन-अल्कलाइज्ड कोको. कोणतेही चॉकलेट फ्लेवरिंग नाही. चव खऱ्या कोको बियाण्यांमधून येते. हे अँटीऑक्सिडंट्सचे देखील स्रोत आहे.',
+          te: 'తీపి లేని, నాన్-ఆల్కలైజ్డ్ కోకో. చాకోలెట్ ఫ్లేవరింగ్ లేదు. రుచి నిజమైన కోకో బీన్స్ నుండి వస్తుంది. ఇది యాంటీఆక్సిడెంట్ల మూలం కూడా.',
+          ta: 'இனிப்பு சேர்க்காத, Non-alkalized கோகோ. சாக்லேட் ஃப்ளேவரிங் இல்லை. சுவை உண்மையான கோகோ பீன்ஸிலிருந்து வருகிறது. ஆன்டிஆக்ஸிடன்ட்களின் மூலம் கூட.',
+          bn: 'চিনিমুক্ত, নন-অ্যালকালাইজড কোকো। কোনো চকোলেট ফ্লেভারিং নেই। স্বাদ আসল কোকো বিন থেকে আসে। অ্যান্টিঅক্সিডেন্টেরও উৎস।',
+          gu: 'ગળপण विनानो, Non-alkalized கோகோ. चॉकलेट फ्लेवरिंग नाहीं. स्वाद असली कोको बीन्स থেকে আসে. एंटीऑक्सीडेंट का भी स्रोत.',
+          kn: 'ಸಕ್ಕರೆರಹಿತ, ನಾನ್-ಆಲ್ಕಲೈಜ್ಡ್ ಕೋಕೋ. ಚಾಕೊಲೇಟ್ ಫ್ಲೇವರಿಂಗ್ ಇಲ್ಲ. ರುಚಿ ನಿಜವಾದ ಕೋಕೋ ಬೀನ್ಸ್‌ನಿಂದ ಬರುತ್ತದೆ. ಆಂಟಿಆಕ್ಸಿಡೆಂಟ್‌ಗಳ ಮೂಲ ಕೂಡ.'
+        },
+        badges: [
+          { type: 'clean', t: { en: 'Clean', hi: 'शुद्ध', mr: 'शुद्ध', te: 'స్వచ్ఛమైన', ta: 'தூய்மையான', bn: 'পরিষ্কার', gu: 'શુદ્ધ', kn: 'ಶುದ್ಧ' } },
+          { type: 'source', t: { en: 'Source: West African Cocoa', hi: 'स्रोत: पश्चिम अफ्रीकी कोको', mr: 'स्रोत: पश्चिम आफ्रिकी कोको', te: 'మూలం: పశ్చిమ ఆఫ్రికన్ కోకో', ta: 'மூலம்: மேற்கு ஆப்பிரிக்க கோகோ', bn: 'উৎস: পশ্চিম আফ্রিকান কোকো', gu: 'સ્рोт: పশ్చিম आफ्रिकन कोको', kn: 'ಮೂಲ: ಪಶ್ಚಿಮ ಆಫ್ರಿಕನ್ ಕೋಕೋ' } },
+          { type: 'function', t: { en: 'Function: Flavour + Antioxidants', hi: 'कार्य: स्वाद + एंटीऑक्सीडेंट', mr: 'कार्य: चव + अँटीऑक्सिडंट्स', te: 'పని: రుచి + యాంటీఆక్సిడెంట్లు', ta: 'செயல்பாடு: சுவை + ஆன்டிஆக்ஸிடன்ட்கள்', bn: 'কাজ: স্বাদ + অ্যান্টিঅক্সিডেন্ট', gu: 'કાર્ય: સ્વાદ + એન્ટીઑક્સિડન્ટ', kn: 'ಕಾರ್ಯ: ರುಚಿ + ಆಂಟಿಆಕ್ಸಿಡೆಂಟ್‌ಗಳು' } }
+        ]
+      },
+      {
+        en: 'Stevia Leaf Extract',
+        t: { hi: 'स्टेविया पत्ती अर्क', mr: 'स्टेविया पान अर्क', te: 'స్టెవియా ఆకు సారం', ta: 'ஸ்டீவியா இலை சாறு', bn: 'স্টেভিয়া পাতার নির্যাস', gu: 'સ્ટেвিয়া पान अर्क', kn: 'ಸ್ಟೀವಿಯಾ ಎಲೆ ಸಾರ' },
+        why: 'Zero calories, zero glycaemic impact. No sucralose, no aspartame. 76% of the community voted for no artificial sweeteners.',
+        whyT: {
+          hi: 'शून्य कैलोरी, शून्य ग्लाइसेमिक प्रभाव। कोई sucralose नहीं, कोई aspartame नहीं। 76% समुदाय ने कृत्रिम मिठास के खिलाफ मतदान किया।',
+          mr: 'शून्य कॅलोरी, शून्य ग्लायसेमिक प्रभाव. कोणतेही sucralose नाही, कोणतेही aspartame नाही. 76% समुदायाने कृत्रिम गोडव्याविरुद्ध मतदान केले.',
+          te: 'శూన్య కేలరీలు, శూన్య గ్లైసెమిక్ ప్రభావం. sucralose లేదు, aspartame లేదు. 76% కమ్యూనిటీ కృత్రిమ స్వీటెనర్లకు వ్యతిరేకంగా ఓటు వేసింది.',
+          ta: 'பூஜ்ய கலோரிகள், பூஜ்ய கிளைசெமிக் தாக்கம். Sucralose இல்லை, Aspartame இல்லை. 76% சமூகம் செயற்கை இனிப்பான்களுக்கு எதிராக வாக்களித்தது.',
+          bn: 'শূন্য ক্যালোরি, শূন্য গ্লাইসেমিক প্রভাব। কোনো sucralose নেই, কোনো aspartame নেই। ৭৬% কমিউনিটি কৃত্রিম মিষ্টির বিরুদ্ধে ভোট দিয়েছে।',
+          gu: 'শূन্য ক৅লোরি, শূন্য গ্লাইসেমিক প্রভাব. কোনো sucralose নাহীং, কোনো aspartame নাহীং. 76% সমুদায় কৃত্রিম মিষ্টির বিরুদ্ধে ভোট দিয়েছে।',
+          kn: 'ಶೂನ್ಯ ಕ್ಯಾಲೋರಿಗಳು, ಶೂನ್ಯ ಗ್ಲೈಸೆಮಿಕ್ ಪರಿಣಾಮ. Sucralose ಇಲ್ಲ, Aspartame ಇಲ್ಲ. 76% ಸಮುದಾಯ ಕೃತಕ ಸಿಹಿಕಾರಕಗಳ ವಿರುದ್ಧ ಮತ ಹಾಕಿದೆ.'
+        },
+        badges: [
+          { type: 'clean', t: { en: 'Clean', hi: 'शुद्ध', mr: 'शुद्ध', te: 'స్వచ్ఛమైన', ta: 'தூய்மையான', bn: 'পরিষ্কার', gu: 'શુદ્ધ', kn: 'ಶುದ್ಧ' } },
+          { type: 'source', t: { en: 'Source: Plant-derived', hi: 'स्रोत: पौधे से प्राप्त', mr: 'स्रोत: वनस्पतीजन्य', te: 'మూలం: మొక్క నుండి', ta: 'மூலம்: தாவரத்திலிருந்து', bn: 'উৎস: উদ্ভিদ-উৎপন্ন', gu: 'સ્રોત: વનસ્પતિ-ઉત્પન્ન', kn: 'ಮೂಲ: ಸಸ್ಯ-ಆಧಾರಿತ' } },
+          { type: 'function', t: { en: 'Function: Sweetener', hi: 'कार्य: मिठास', mr: 'कार्य: गोडवा', te: 'పని: తీపి', ta: 'செயல்பாடு: இனிப்பான்', bn: 'কাজ: মিষ্টি', gu: 'કાર્ય: ગળpaN', kn: 'ಕಾರ್ಯ: ಸಿಹಿಕಾರಕ' } }
+        ]
+      }
+    ],
+    'plant-coffee': [
+      {
+        en: 'Pea Protein Isolate',
+        t: { hi: 'मटर प्रोटीन आइसोलेट', mr: 'वाटाणा प्रथिने आयसोलेट', te: 'బఠానీ ప్రోటీన్ ఐసోలేట్', ta: 'பட்டாணி புரத தனிமை', bn: 'মটর প্রোটিন আইসোলেট', gu: 'વটाणा प्रोटीन आइसोलेट', kn: 'ಬಟಾಣಿ ಪ್ರೋಟೀನ್ ಐಸೊಲೇಟ್' },
+        why: 'The primary plant protein source. Pea protein has a mild earthy taste. OWN does not mask this with artificial flavours. What you taste is what it is.',
+        whyT: {
+          hi: 'मुख्य पादप प्रोटीन स्रोत। मटर प्रोटीन में हल्का मिट्टी जैसा स्वाद होता है। OWN इसे कृत्रिम स्वाद से नहीं छुपाता। जो स्वाद आता है वही असली है।',
+          mr: 'मुख्य वनस्पती प्रथिने स्रोत. वाटाण्याच्या प्रथिनांना सौम्य मातीचा स्वाद असतो. OWN हे कृत्रिम स्वादांनी लपवत नाही. जो स्वाद येतो तोच खरा.',
+          te: 'ప్రధాన మొక్క ప్రోటీన్ మూలం. బఠానీ ప్రోటీన్‌కు తేలికపాటి మట్టి రుచి ఉంటుంది. OWN దీన్ని కృత్రిమ ఫ్లేవర్‌లతో దాచదు. మీరు రుచి చూసేది అదే నిజం.',
+          ta: 'முதன்மை தாவர புரத மூலம். பட்டாணி புரதத்திற்கு லேசான மண் சுவை உண்டு. OWN இதை செயற்கை சுவையூட்டிகளால் மறைக்காது. நீங்கள் சுவைப்பது அதுவே உண்மை.',
+          bn: 'প্রধান উদ্ভিদ প্রোটিন উৎস। মটর প্রোটিনে হালকা মাটির মতো স্বাদ আছে। OWN এটি কৃত্রিম ফ্লেভার দিয়ে ঢাকে না। যে স্বাদ পাবেন সেটাই আসল।',
+          gu: 'মুখ্য উদ্ভিদ প্রোটিন উৎস। মটর প্রোটিনে হালকা মাটির মতো স্বাদ। OWN এটা কৃত্রিম ফ্লেভার দিয়ে ঢাকে না। যে স্বাদ পাবেন সেটাই আসল।',
+          kn: 'ಪ್ರಾಥಮಿಕ ಸಸ್ಯ ಪ್ರೋಟೀನ್ ಮೂಲ. ಬಟಾಣಿ ಪ್ರೋಟೀನ್‌ಗೆ ಸೌಮ್ಯ ಮಣ್ಣಿನ ರುಚಿ ಇರುತ್ತದೆ. OWN ಇದನ್ನು ಕೃತಕ ಫ್ಲೇವರ್‌ಗಳಿಂದ ಮರೆಮಾಡುವುದಿಲ್ಲ. ನೀವು ರುಚಿ ನೋಡುವುದು ಅದೇ ಸತ್ಯ.'
+        },
+        badges: [
+          { type: 'clean', t: { en: 'Vegan', hi: 'वीगन', mr: 'व्हेगन', te: 'వీగన్', ta: 'வீகன்', bn: 'ভেগান', gu: 'विगन', kn: 'ವೀಗನ್' } },
+          { type: 'source', t: { en: 'Source: Yellow Split Peas', hi: 'स्रोत: पीली दाल', mr: 'स्रोत: पिवळी मसूर डाळ', te: 'మూలం: పసుపు పచ్చి బఠానీలు', ta: 'மூலம்: மஞ்சள் பட்டாணி', bn: 'উৎস: হলুদ ছোলা', gu: 'स्रोत: पीली चना दाल', kn: 'ಮೂಲ: ಹಳದಿ ಸೀಳು ಬಟಾಣಿ' } },
+          { type: 'function', t: { en: 'Function: Primary Protein', hi: 'कार्य: मुख्य प्रोटीन', mr: 'कार्य: मुख्य प्रथिने', te: 'పని: ప్రధాన ప్రోటీన్', ta: 'செயல்பாடு: முதன்மை புரதம்', bn: 'কাজ: প্রাথমিক প্রোটিন', gu: 'कार्य: मुख्य प्रोटीन', kn: 'ಕಾರ್ಯ: ಪ್ರಾಥಮಿಕ ಪ್ರೋಟೀನ್' } }
+        ]
+      },
+      {
+        en: 'Brown Rice Protein',
+        t: { hi: 'ब्राउन राइस प्रोटीन', mr: 'तपकिरी तांदूळ प्रथिने', te: 'బ్రౌన్ రైస్ ప్రోటీన్', ta: 'பழுப்பு அரிசி புரதம்', bn: 'বাদামী চালের প্রোটিন', gu: 'ब्राउन राइस प्रोटीन', kn: 'ಕಂದು ಅಕ್ಕಿ ಪ್ರೋಟೀನ್' },
+        why: 'Blended with pea protein to complete the amino acid profile. Pea is low in methionine, and rice fills that gap. Together they form a complete protein equivalent to whey.',
+        whyT: {
+          hi: 'अमीनो एसिड प्रोफाइल पूरा करने के लिए मटर प्रोटीन के साथ मिलाया गया। मटर में मेथियोनिन कम होता है, चावल उस कमी को पूरा करता है। मिलकर वे व्हे के बराबर पूर्ण प्रोटीन बनाते हैं।',
+          mr: 'अमीनो ऍसिड प्रोफाइल पूर्ण करण्यासाठी वाटाणा प्रथिनांसह मिश्रित. वाटाण्यात मेथिओनाइन कमी, तांदूळ ती कमतरता भरून काढतो. एकत्र व्हेसमकक्ष संपूर्ण प्रथिने बनवतात.',
+          te: 'అమినో యాసిడ్ ప్రొఫైల్‌ను పూర్తి చేయడానికి బఠానీ ప్రోటీన్‌తో కలపబడింది. బఠానీలో మెథియోనిన్ తక్కువ, అరిసి ఆ లోటును భర్తీ చేస్తుంది. కలిసి వేగుకు సమానమైన పూర్తి ప్రోటీన్ ఏర్పరుస్తాయి.',
+          ta: 'அமினோ அமில சுயவிவரத்தை நிறைவு செய்ய பட்டாணி புரதத்துடன் கலக்கப்படுகிறது. பட்டாணியில் methionine குறைவு, அரிசி அதை நிரப்புகிறது. சேர்ந்து வேக்கு சமான முழு புரதம் உருவாக்குகின்றன.',
+          bn: 'অ্যামিনো অ্যাসিড প্রোফাইল সম্পূর্ণ করতে মটর প্রোটিনের সাথে মেশানো। মটরে মেথিওনিন কম, চাল সেই ঘাটতি পূরণ করে। একসাথে হোয়ের সমতুল্য সম্পূর্ণ প্রোটিন তৈরি করে।',
+          gu: 'अमीनो एसिड प्रोफाइल पूर्ण करण्यासाठी वटाणा प्रोटीनसोबत मिश्र. वटाण्यात methionine कमी, तांदूळ ती कमतरता भरून काढतो. एकत्र whey समकक्ष संपूर्ण प्रोटीन बनवतात.',
+          kn: 'ಅಮಿನೋ ಆಮ್ಲ ಪ್ರೊಫೈಲ್ ಪೂರ್ಣಗೊಳಿಸಲು ಬಟಾಣಿ ಪ್ರೋಟೀನ್‌ನೊಂದಿಗೆ ಬೆರೆಸಲಾಗಿದೆ. ಬಟಾಣಿಯಲ್ಲಿ ಮೆಥಿಯೋನಿನ್ ಕಡಿಮೆ, ಅಕ್ಕಿ ಆ ಕೊರತೆ ತುಂಬಿಸುತ್ತದೆ. ಜೊತೆಗಿದ್ದಾಗ ವೇಗೆ ಸಮಾನ ಪೂರ್ಣ ಪ್ರೋಟೀನ್ ರೂಪಿಸುತ್ತವೆ.'
+        },
+        badges: [
+          { type: 'clean', t: { en: 'Vegan', hi: 'वीगन', mr: 'व्हेगन', te: 'వీగన్', ta: 'வீகன்', bn: 'ভেগান', gu: 'विगन', kn: 'ವೀಗನ್' } },
+          { type: 'source', t: { en: 'Source: Whole Grain Rice', hi: 'स्रोत: साबुत अनाज चावल', mr: 'स्रोत: संपूर्ण धान्य तांदूळ', te: 'మూలం: మొత్తం ధాన్యం బియ్యం', ta: 'மூலம்: முழு தானிய அரிசி', bn: 'উৎস: গোটা শস্য চাল', gu: 'स्रोत: साबुत अनाज चावल', kn: 'ಮೂಲ: ಧಾನ್ಯದ ಅಕ್ಕಿ' } },
+          { type: 'function', t: { en: 'Function: Completes Amino Profile', hi: 'कार्य: अमीनो प्रोफाइल पूरा करता है', mr: 'कार्य: अमीनो प्रोफाइल पूर्ण करते', te: 'పని: అమినో ప్రొఫైల్ పూర్తి చేస్తుంది', ta: 'செயல்பாடு: அமினோ சுயவிவரம் நிறைவு செய்கிறது', bn: 'কাজ: অ্যামিনো প্রোফাইল সম্পূর্ণ করে', gu: 'कार्य: अमीनो प्रोफाइल पूर्ण करता है', kn: 'ಕಾರ್ಯ: ಅಮಿನೋ ಪ್ರೊಫೈಲ್ ಪೂರ್ಣಗೊಳಿಸುತ್ತದೆ' } }
+        ]
+      },
+      {
+        en: 'Real Coffee Powder',
+        t: { hi: 'असली कॉफी पाउडर', mr: 'खरी कॉफी पावडर', te: 'నిజమైన కాఫీ పౌడర్', ta: 'உண்மையான காபி தூள்', bn: 'আসল কফি পাউডার', gu: 'असली कॉफी पाउडर', kn: 'ನಿಜವಾದ ಕಾಫಿ ಪೌಡರ್' },
+        why: 'Same real coffee used in the whey variant. No coffee flavouring. Actual ground coffee from Coorg.',
+        whyT: {
+          hi: 'व्हे वेरिएंट में उपयोग की गई वही असली कॉफी। कोई कॉफी फ्लेवरिंग नहीं। कूर्ग से असली पिसी हुई कॉफी।',
+          mr: 'व्हे प्रकारात वापरलेली तीच खरी कॉफी. कोणतेही कॉफी फ्लेवरिंग नाही. कूर्गमधून खरी दळलेली कॉफी.',
+          te: 'వే వేరియంట్‌లో ఉపయోగించిన అదే నిజమైన కాఫీ. కాఫీ ఫ్లేవరింగ్ లేదు. కూర్గ్ నుండి నిజమైన గ్రౌండ్ కాఫీ.',
+          ta: 'வே வகையில் பயன்படுத்தப்படும் அதே உண்மையான காபி. காபி ஃப்ளேவரிங் இல்லை. கூர்க்கில் இருந்து உண்மையான அரைத்த காபி.',
+          bn: 'হোয়ে ভেরিয়েন্টে ব্যবহৃত একই আসল কফি। কোনো কফি ফ্লেভারিং নেই। কুর্গ থেকে আসল গ্রাউন্ড কফি।',
+          gu: 'Whey variant मा वापरलेली तीच असली कॉफी. कोणतेही कॉफी फ्लेवरिंग नाही. कूर्गमधून खरी दळलेली कॉफी.',
+          kn: 'ವೇ ವೇರಿಯಂಟ್‌ನಲ್ಲಿ ಬಳಸಿದ ಅದೇ ನಿಜವಾದ ಕಾಫಿ. ಕಾಫಿ ಫ್ಲೇವರಿಂಗ್ ಇಲ್ಲ. ಕೊಡಗಿನಿಂದ ನಿಜವಾದ ಗ್ರೌಂಡ್ ಕಾಫಿ.'
+        },
+        badges: [
+          { type: 'clean', t: { en: 'Clean', hi: 'शुद्ध', mr: 'शुद्ध', te: 'స్వచ్ఛమైన', ta: 'தூய்மையான', bn: 'পরিষ্কার', gu: 'शुद्ध', kn: 'ಶుದ್ಧ' } },
+          { type: 'source', t: { en: 'Source: Coorg, Karnataka', hi: 'स्रोत: कूर्ग, कर्नाटक', mr: 'स्रोत: कूर्ग, कर्नाटक', te: 'మూలం: కూర్గ్, కర్ణాటక', ta: 'மூலம்: கூர்க், கர்நாடகா', bn: 'উৎস: কুর্গ, কর্ণাটক', gu: 'स्रोत: कूर्ग, कर्नाटक', kn: 'ಮೂಲ: ಕೊಡಗು, ಕರ್ನಾಟಕ' } },
+          { type: 'function', t: { en: 'Function: Flavour + Caffeine', hi: 'कार्य: स्वाद + कैफीन', mr: 'कार्य: चव + कॅफीन', te: 'పని: రుచి + కెఫీన్', ta: 'செயல்பாடு: சுவை + காஃபின்', bn: 'কাজ: স্বাদ + ক্যাফেইন', gu: 'कार्य: स्वाद + कैफीन', kn: 'ಕಾರ್ಯ: ರುಚಿ + ಕೆಫೀನ್' } }
+        ]
+      }
+    ],
+    'whey-isolate': [
+      {
+        en: 'Whey Protein Isolate',
+        t: { hi: 'व्हे प्रोटीन आइसोलेट', mr: 'व्हे प्रथिने आयसोलेट', te: 'వే ప్రోటీన్ ఐసోలేట్', ta: 'வே புரத தனிமை', bn: 'হোয়ে প্রোটিন আইসোলেট', gu: 'व्हे प्रोटीन आइसोलेट', kn: 'ವೇ ಪ್ರೋಟೀನ್ ಐಸೊಲೇಟ್' },
+        why: 'Higher purity than concentrate: 90% protein by weight. Lactose filtered out, making it easier on digestion. For those who want maximum protein with minimum everything else.',
+        whyT: {
+          hi: 'कॉन्सेंट्रेट से अधिक शुद्धता: वजन के हिसाब से 90% प्रोटीन। लैक्टोज फ़िल्टर किया गया, पाचन आसान होता है। जो लोग न्यूनतम बाकी के साथ अधिकतम प्रोटीन चाहते हैं उनके लिए।',
+          mr: 'कॉन्सेंट्रेटपेक्षा अधिक शुद्धता: वजनाने 90% प्रथिने. लॅक्टोज फिल्टर केले, पचन सुलभ होते. जास्तीत जास्त प्रथिने हव्या असणाऱ्यांसाठी.',
+          te: 'కాన్సంట్రేట్ కంటే అధిక స్వచ్ఛత: బరువులో 90% ప్రోటీన్. లాక్టోస్ వడపోయబడింది, జీర్ణక్రియ సులభతరం. తక్కువ మిగతా వస్తువులతో గరిష్ట ప్రోటీన్ కావాలనే వారికి.',
+          ta: 'செறிவூட்டப்பட்டதை விட அதிக தூய்மை: எடையில் 90% புரதம். லாக்டோஸ் வடிகட்டப்பட்டது, செரிமானம் எளிதாகிறது. மற்றவை குறைவாக வேண்டும், புரதம் அதிகமாக வேண்டும் என்பவர்களுக்கு.',
+          bn: 'কনসেন্ট্রেটের চেয়ে বেশি বিশুদ্ধতা: ওজনে ৯০% প্রোটিন। ল্যাক্টোজ ফিল্টার করা, হজম সহজ। সব কিছু কম রেখে সর্বোচ্চ প্রোটিন চাইলে।',
+          gu: 'Concentrate करतां अधिक शुद्धता: वजन प्रमाणे 90% प्रोटीन. Lactose फिल्टर, पचन सरळ. ओछा बाकी सब सोथे वधु प्रोटीन इच्छ्नार माटे.',
+          kn: 'ಕಾನ್ಸಂಟ್ರೇಟ್‌ಗಿಂತ ಹೆಚ್ಚಿನ ಶುದ್ಧತೆ: ತೂಕದಲ್ಲಿ 90% ಪ್ರೋಟೀನ್. ಲ್ಯಾಕ್ಟೋಸ್ ಫಿಲ್ಟರ್, ಜೀರ್ಣಕ್ರಿಯೆ ಸುಲಭ. ಕಡಿಮೆ ಬೇರೆ ಎಲ್ಲದರೊಂದಿಗೆ ಗರಿಷ್ಠ ಪ್ರೋಟೀನ್ ಬಯಸುವವರಿಗೆ.'
+        },
+        badges: [
+          { type: 'clean', t: { en: 'Clean', hi: 'शुद्ध', mr: 'शुद्ध', te: 'స్వచ్ఛమైన', ta: 'தூய்மையான', bn: 'পরিষ্কার', gu: 'शुद्ध', kn: 'ಶುದ್ಧ' } },
+          { type: 'source', t: { en: 'Source: Indian Dairy', hi: 'स्रोत: भारतीय डेयरी', mr: 'स्रोत: भारतीय दुग्धजन्य', te: 'మూలం: భారతీయ పాల', ta: 'மூலம்: இந்திய பால்', bn: 'উৎস: ভারতীয় দুগ্ধ', gu: 'स्रोत: भारतीय डेयरी', kn: 'ಮೂಲ: ಭಾರತೀಯ ಡೇರಿ' } },
+          { type: 'function', t: { en: 'Function: Primary Protein', hi: 'कार्य: मुख्य प्रोटीन', mr: 'कार्य: मुख्य प्रथिने', te: 'పని: ప్రధాన ప్రోటీన్', ta: 'செயல்பாடு: முதன்மை புரதம்', bn: 'কাজ: প্রাথমিক প্রোটিন', gu: 'कार्य: मुख्य प्रोटीन', kn: 'ಕಾರ್ಯ: ಪ್ರಾಥಮಿಕ ಪ್ರೋಟೀನ್' } }
+        ]
+      },
+      {
+        en: 'Digestive Enzymes (Protease)',
+        t: { hi: 'पाचक एंजाइम (प्रोटीज)', mr: 'पाचक एंझाइम्स (प्रोटीज)', te: 'జీర్ణ ఎంజైమ్‌లు (ప్రోటీజ్)', ta: 'செரிமான நொதிகள் (புரோட்டீஸ்)', bn: 'হজম এনজাইম (প্রোটিজ)', gu: 'पाचक एंजाइम (प्रोटीज)', kn: 'ಜೀರ್ಣಕ ಕಿಣ್ವಗಳು (ಪ್ರೋಟೀಸ್)' },
+        why: 'Maximises protein absorption. Even with isolate, enzymes help break down protein faster so your body uses more of what you are paying for.',
+        whyT: {
+          hi: 'प्रोटीन अवशोषण अधिकतम करता है। आइसोलेट के साथ भी, एंजाइम प्रोटीन तेजी से तोड़ते हैं ताकि आपका शरीर जो आप खरीद रहे हैं उसका अधिक उपयोग करे।',
+          mr: 'प्रथिने शोषण जास्तीत जास्त करते. आयसोलेटसहही एंझाइम्स प्रथिने जलद तोडतात जेणेकरून शरीर खरेदी केलेल्या गोष्टींचा अधिक वापर करेल.',
+          te: 'ప్రోటీన్ శోషణను గరిష్టంగా చేస్తుంది. ఐసోలేట్‌తో కూడా, ఎంజైమ్‌లు ప్రోటీన్ వేగంగా విభజిస్తాయి, శరీరం మీరు చెల్లిస్తున్న దాన్ని ఎక్కువగా ఉపయోగిస్తుంది.',
+          ta: 'புரத உறிஞ்சுதலை அதிகரிக்கிறது. Isolate உடன் கூட, என்சைம்கள் புரதத்தை வேகமாக உடைக்கின்றன, உடல் நீங்கள் பணம் செலுத்துவதை அதிகமாக பயன்படுத்துகிறது.',
+          bn: 'প্রোটিন শোষণ সর্বোচ্চ করে। আইসোলেটের সাথেও, এনজাইম প্রোটিন দ্রুত ভাঙে যাতে শরীর আপনি যা কিনছেন তার বেশি ব্যবহার করে।',
+          gu: 'Protein absorption अधिकतम करता है. Isolate साथेय, enzymes protein झडपथी तोडे छे जेथी शरीर तमे जे खरीद रहा छो तेनो वधु उपयोग करे.',
+          kn: 'ಪ್ರೋಟೀನ್ ಹೀರಿಕೊಳ್ಳುವಿಕೆ ಹೆಚ್ಚಿಸುತ್ತದೆ. ಐಸೊಲೇಟ್‌ನೊಂದಿಗೆ ಕೂಡ, ಕಿಣ್ವಗಳು ಪ್ರೋಟೀನ್ ವೇಗವಾಗಿ ಒಡೆಯುತ್ತವೆ, ಶರೀರ ನೀವು ಪಾವತಿಸುತ್ತಿರುವುದನ್ನು ಹೆಚ್ಚು ಬಳಸುತ್ತದೆ.'
+        },
+        badges: [
+          { type: 'clean', t: { en: 'Clean', hi: 'शुद्ध', mr: 'शुद्ध', te: 'స్వచ్ఛమైన', ta: 'தூய்மையான', bn: 'পরিষ্কার', gu: 'शुद्ध', kn: 'ಶುದ್ಧ' } },
+          { type: 'source', t: { en: 'Source: Fermentation-derived', hi: 'स्रोत: किण्वन से प्राप्त', mr: 'स्रोत: किण्वनजन्य', te: 'మూలం: కిణ్వన ప్రక్రియ నుండి', ta: 'மூலம்: நொதித்தலில் இருந்து', bn: 'উৎস: গাঁজন থেকে', gu: 'स्रोत: किण्वन से प्राप्त', kn: 'ಮೂಲ: ಹುದುಗುವಿಕೆಯಿಂದ' } },
+          { type: 'function', t: { en: 'Function: Improves Absorption', hi: 'कार्य: अवशोषण बेहतर करता है', mr: 'कार्य: शोषण सुधारते', te: 'పని: శోషణను మెరుగుపరుస్తుంది', ta: 'செயல்பாடு: உறிஞ்சுதலை மேம்படுத்துகிறது', bn: 'কাজ: শোষণ উন্নত করে', gu: 'कार्य: अवशोषण बेहतर करता है', kn: 'ಕಾರ್ಯ: ಹೀರಿಕೊಳ್ಳುವಿಕೆ ಸುಧಾರಿಸುತ್ತದೆ' } }
+        ]
+      }
+    ]
+  };
+
+  let currentLang = 'en';
+  let currentProduct = 'whey-coffee';
+
+  function updateLanguage() {
+    currentLang = document.getElementById('lang-select').value;
+    const d = langData[currentLang];
+    document.getElementById('nl-lang-badge').textContent = d.badge;
+    document.getElementById('nl-title').textContent = d.nlTitle;
+    document.getElementById('nl-serving').textContent = d.nlServing;
+    document.getElementById('nl-per-serving').textContent = d.nlPerServing;
+    document.getElementById('nl-per-100').textContent = d.nlPer100;
+    document.getElementById('nl-energy').textContent = d.nlEnergy;
+    document.getElementById('nl-protein').textContent = d.nlProtein;
+    document.getElementById('nl-carbs').textContent = d.nlCarbs;
+    document.getElementById('nl-sugars').textContent = d.nlSugars;
+    document.getElementById('nl-fat').textContent = d.nlFat;
+    document.getElementById('nl-sodium').textContent = d.nlSodium;
+    document.getElementById('nl-caffeine').textContent = d.nlCaffeine;
+    document.getElementById('nl-panel-title').textContent = d.panelTitle;
+    document.getElementById('dec-panel-title').textContent = d.decTitle;
+    renderIngredients();
+  }
+
+  function selectProduct(btn, product) {
+    document.querySelectorAll('.lt-prod-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentProduct = product;
+    renderIngredients();
+  }
+
+  const whyLabel = {
+    en: "Why it's in here",
+    hi: "यह क्यों है",
+    mr: "हे का आहे",
+    te: "ఇది ఎందుకు ఉంది",
+    ta: "இது ஏன் உள்ளது",
+    bn: "এটি কেন আছে",
+    gu: "આ શા માટે છે",
+    kn: "ಇದು ಏಕೆ ಇದೆ"
+  };
+
+  const badgeLabels = {
+    en: { clean: 'Clean', vegan: 'Vegan', source: 'Source', function: 'Function' },
+    hi: { clean: 'स्वच्छ', vegan: 'वीगन', source: 'स्रोत', function: 'कार्य' },
+    mr: { clean: 'शुद्ध', vegan: 'व्हेगन', source: 'स्रोत', function: 'कार्य' },
+    te: { clean: 'స్వచ్ఛమైన', vegan: 'వీగన్', source: 'మూలం', function: 'పని' },
+    ta: { clean: 'தூய்மையான', vegan: 'வீகன்', source: 'மூலம்', function: 'செயல்பாடு' },
+    bn: { clean: 'পরিষ্কার', vegan: 'ভেগান', source: 'উৎস', function: 'কাজ' },
+    gu: { clean: 'શુદ્ધ', vegan: 'વિગન', source: 'સ્રોત', function: 'કાર્ય' },
+    kn: { clean: 'ಶುದ್ಧ', vegan: 'ವೀಗನ್', source: 'ಮೂಲ', function: 'ಕಾರ್ಯ' }
+  };
+
+  function renderIngredients() {
+    const list = ingredients[currentProduct] || [];
+    const container = document.getElementById('ingredient-decoder');
+    const lang = currentLang;
+    const wLabel = whyLabel[lang] || whyLabel.en;
+
+    container.innerHTML = list.map((ing) => {
+      const displayName = lang === 'en' ? ing.en : (ing.t && ing.t[lang] ? ing.t[lang] : ing.en);
+      const whyText = lang === 'en' ? ing.why : (ing.whyT && ing.whyT[lang] ? ing.whyT[lang] : ing.why);
+      const badges = ing.badges.map(b => {
+        const label = b.t ? (b.t[lang] || b.t.en) : b.text;
+        return `<span class="ing-badge ${b.type}">${label}</span>`;
+      }).join('');
+
+      return `
+        <div class="ing-item" onclick="toggleIng(this)">
+          <div class="ing-item-top">
+            <div>
+              <div class="ing-name-en" style="${lang !== 'en' ? 'font-size:11px;color:var(--muted);font-weight:600;margin-bottom:2px;' : ''}">${ing.en}</div>
+              ${lang !== 'en' ? `<div class="ing-name-local">${displayName}</div>` : ''}
+            </div>
+            <span class="ing-expand-icon">+</span>
+          </div>
+          <div class="ing-detail">
+            <div class="ing-badge-row">${badges}</div>
+            <div class="ing-why"><strong>${wLabel}:</strong> ${whyText}</div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function toggleIng(el) {
+    el.classList.toggle('open');
+  }
+
+  // Init
+  renderIngredients();
+
+  // ── TAB / VOTE / OTP ──
+  function switchTab(name, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('sec-' + name).classList.add('active');
+  }
+
+  function pickOption(row, id) {
+    if (voted[id]) return;
+    row.closest('.vote-card').querySelectorAll('.vo-bar-wrap, .vo-fill').forEach(el => el.classList.remove('selected'));
+    row.querySelector('.vo-bar-wrap').classList.add('selected');
+    row.querySelector('.vo-fill').classList.add('selected');
+    selected[id] = row.querySelector('.vo-label').textContent;
+  }
+
+  function openOTP(id) {
+    if (voted[id]) return;
+    if (!selected[id]) {
+      const firstRow = document.getElementById('btn-' + id).closest('.vote-card').querySelector('.vo-row');
+      pickOption(firstRow, id);
+    }
+    currentVote = id;
+    document.getElementById('modal-step-1').classList.add('visible');
+    document.getElementById('modal-step-2').classList.remove('visible');
+    document.getElementById('modal-step-3').classList.remove('visible');
+    document.getElementById('otp-modal').classList.add('open');
+  }
+
+  function openWhatsApp() {
+    const phone = document.getElementById('modal-phone').value;
+    if (!phone) { document.getElementById('modal-phone').focus(); return; }
+    const token = 'OWN-' + Math.floor(1000 + Math.random() * 9000);
+    const voteId = currentVote || 'v1';
+    const option = selected[voteId] || 'my option';
+    const msg = encodeURIComponent('Verify my OWN vote: ' + token + ' (' + option + ')');
+    const waUrl = 'https://wa.me/919999999999?text=' + msg;
+    document.getElementById('modal-step-1').classList.remove('visible');
+    document.getElementById('modal-step-2').classList.add('visible');
+    window.open(waUrl, '_blank');
+    // Simulate polling - in production this would poll /api/verify?token=OWN-XXXX
+    setTimeout(simulateVerified, 8000);
+  }
+
+  function simulateVerified() {
+    document.getElementById('modal-step-2').classList.remove('visible');
+    document.getElementById('modal-step-3').classList.add('visible');
+  }
+
+  function closeModal() {
+    document.getElementById('otp-modal').classList.remove('open');
+    if (currentVote) {
+      voted[currentVote] = true;
+      const btn = document.getElementById('btn-' + currentVote);
+      btn.classList.add('voted');
+      btn.textContent = '✓ Official vote cast · Verified';
+      currentVote = null;
+    }
+  }
+
+  document.getElementById('otp-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  function selectBatch(btn) {
+    btn.closest('.batch-tabs').querySelectorAll('.batch-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
